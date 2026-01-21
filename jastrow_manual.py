@@ -279,25 +279,56 @@ class JastrowWordsDictionary:
         self._load_index()
 
     def _load_index(self):
+        """
+        Lade die Liste der Wörterbuchdateien.  Falls ein Index vorhanden ist,
+        werden dessen Einträge gelesen. Zusätzlich werden alle vorhandenen
+        ``jastrow_words_*.json`` Dateien im Verzeichnis berücksichtigt, um
+        sicherzustellen, dass bereits existierende Wörterbuchdateien nicht
+        verloren gehen, falls der Index beschädigt oder unvollständig ist.
+        Sollte noch keine Datei existieren, wird eine neue leere Datei
+        angelegt.
+        """
+        files_from_index: List[str] = []
+        # Lade vorhandene Einträge aus dem Index (falls vorhanden)
         if self.index_file.exists():
             try:
                 with open(self.index_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
                     if isinstance(data, list):
-                        self.files = data
+                        files_from_index = [str(item) for item in data]
             except Exception:
+                # Ignoriere Fehler – wir werden die Dateien aus dem Dateisystem lesen
                 pass
-        # Wenn keine Dateien vorhanden sind, erstelle eine neue
-        if not self.files:
+        # Sammle alle Wörterbuchdateien im Verzeichnis
+        discovered_files: List[str] = []
+        try:
+            for f in sorted(self.dir_path.glob('jastrow_words_*.json')):
+                discovered_files.append(f.name)
+        except Exception:
+            pass
+        # Kombiniere Index und entdeckte Dateien, ohne Duplikate
+        combined: List[str] = []
+        for fname in files_from_index + discovered_files:
+            if fname not in combined:
+                combined.append(fname)
+        # Wenn noch keine Dateien vorhanden sind, erzeuge eine neue leere Datei
+        if not combined:
             initial = 'jastrow_words_1.json'
-            self.files = [initial]
+            combined = [initial]
             path = self.dir_path / initial
             try:
                 with open(path, 'w', encoding='utf-8') as f:
                     json.dump({}, f, ensure_ascii=False, indent=2)
-                self._save_index()
             except Exception:
                 pass
+        # Aktualisiere die interne Liste und speichere den Index
+        self.files = combined
+        # Speichere den Index, um fehlende Dateien zu integrieren
+        try:
+            with open(self.index_file, 'w', encoding='utf-8') as f:
+                json.dump(self.files, f, ensure_ascii=False, indent=2)
+        except Exception:
+            pass
 
     def _save_index(self):
         try:
@@ -328,41 +359,28 @@ class JastrowWordsDictionary:
             pass
 
     def add_entry(self, word: str, entry: dict):
-        """
-        Fügt einen Eintrag dem lokalen Jastrow‑Wörterbuch hinzu.
-        
-        - Entfernt Niqqud vom Schlüssel, behält aber Leerzeichen bei, sodass
-          auch mehrteilige Begriffe (z.B. Phrasen) gespeichert werden können.
-        - Ignoriert leere Schlüssel.
-        - Verhindert doppelte Einträge anhand der Referenz‑ID (rid) oder der
-          Definitionen (falls vorhanden). Dadurch werden sowohl Rohdaten als
-          auch formatierte Daten dedupliziert.
-        - Sortiert das Wörterbuch nach dem niqqud‑befreiten Schlüssel.
-        - Legt bei Überschreiten der maximalen Dateigröße automatisch eine
-          neue Datei an.
-        """
+        """Fügt einen Eintrag hinzu. Sortiert alphabetisch und prüft Datei-Größe."""
         if not word:
             return
-        # Schlüssel bereinigen: Niqqud entfernen und trimmen. Leerzeichen
-        # bleiben erhalten, damit auch zusammengesetzte Begriffe erfasst werden.
+        # Benutze bereinigtes Wort als Schlüssel
         clean_word = self._remove_niqqud(word).strip()
+        # Lehne leere Schlüssel ab; Leerzeichen im Wort werden erlaubt, damit
+        # zusammengesetzte Kopfwörter (z. B. Begriffe mit mehreren Wörtern) ebenfalls
+        # im Wörterbuch gespeichert werden. Dadurch gehen solche Abfragen nicht
+        # verloren.
         if not clean_word:
             return
-        # Aktuelle Datei laden
+        # Lade aktuelle Datei
         path = self._get_current_file_path()
         try:
             with open(path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
         except Exception:
             data = {}
-        # Liste initialisieren, falls Schlüssel noch nicht vorhanden ist
+        # Fügt den Eintrag hinzu
         if clean_word not in data:
             data[clean_word] = []
-        # Prüffunktion für Duplikate. Zwei Einträge gelten als identisch,
-        # wenn ihre rid übereinstimmt oder – bei formatierten Einträgen –
-        # ihre Definitionslisten übereinstimmen. Rohdaten können daher
-        # problemlos zusammen mit formatierten Versionen gespeichert werden;
-        # der zweite Versuch wird verworfen.
+        # Verhindere doppelte Einträge anhand rid oder Definitionen
         def unique_check(new_entry, existing_entries):
             try:
                 rid_new = new_entry.get('rid', '')
@@ -370,30 +388,28 @@ class JastrowWordsDictionary:
                 for old in existing_entries:
                     rid_old = old.get('rid', '')
                     defs_old = [d.get('text', '') for d in old.get('definitions', [])]
-                    # Wenn die Referenz‑ID übereinstimmt, ist der Eintrag bereits vorhanden
-                    if rid_new and rid_old and rid_new == rid_old:
+                    if rid_new and rid_new == rid_old:
                         return False
-                    # Bei formatierten Einträgen: vergleiche die Definitionslisten
-                    if defs_new and defs_old and defs_new == defs_old:
+                    if defs_new and defs_new == defs_old:
                         return False
             except Exception:
                 pass
             return True
-        # Nur speichern, wenn noch kein identischer Eintrag vorhanden ist
         if unique_check(entry, data[clean_word]):
             data[clean_word].append(entry)
-        # Nach alphabetischem Schlüssel sortieren
+        # Sortiere Daten nach alphabetischer Reihenfolge der Schlüssel
         sorted_keys = sorted(data.keys(), key=lambda k: self._remove_niqqud(k))
         sorted_data = {k: data[k] for k in sorted_keys}
-        # Datei zurückschreiben
+        # Speichere zurück
         try:
             with open(path, 'w', encoding='utf-8') as f:
                 json.dump(sorted_data, f, ensure_ascii=False, indent=2)
         except Exception:
             pass
-        # Dateigröße überprüfen und ggf. neue Datei anlegen
+        # Prüfe Größe und erstelle ggf. neue Datei
         try:
             if path.stat().st_size > self.max_size:
+                # Neue Datei wird angelegt; nächste Einträge gehen dorthin
                 self._create_new_file()
         except Exception:
             pass
@@ -646,7 +662,10 @@ class QueryHistory:
     
     def __init__(self, history_file: Path):
         self.history_file = history_file
-        self.max_entries = 5000
+        # Anzahl der zu speichernden Einträge begrenzen?  Standardmässig unbegrenzt.
+        # Das Wörterbuch soll alle Abfragen dauerhaft behalten, daher setzen wir
+        # die Begrenzung auf None. Wird in ``add_query`` berücksichtigt.
+        self.max_entries: Optional[int] = None
         self.history = self._load()
     
     def _load(self) -> dict:
@@ -734,7 +753,10 @@ class QueryHistory:
                 }
             self.history['queries'].insert(0, new_entry)
         
-        if len(self.history['queries']) > self.max_entries:
+        # Wenn eine maximale Anzahl von Einträgen definiert ist und diese überschritten
+        # wird, beschneiden wir die Liste. Standardmässig ist ``max_entries`` None,
+        # sodass keine Beschneidung stattfindet und alle Abfragen erhalten bleiben.
+        if self.max_entries is not None and self.max_entries > 0 and len(self.history['queries']) > self.max_entries:
             self.history['queries'] = self.history['queries'][:self.max_entries]
         
         self.history['stats']['total_queries'] = self.history['stats'].get('total_queries', 0) + 1
@@ -1214,42 +1236,22 @@ class JastrowDictionary:
             
             if not result['sefaria_entries']:
                 def fetch():
-                    """
-                    Holt die Sefaria‑Einträge für das gesuchte Wort, formatiert sie
-                    für die Anzeige und speichert sowohl die Originaldaten als auch
-                    die formatierten Daten im lokalen Wörterbuch. Dadurch wird
-                    sichergestellt, dass jede Abfrage – auch mehrteilige Begriffe –
-                    dauerhaft im Wörterbuch abgelegt wird, sofern sie noch nicht
-                    vorhanden sind.
-                    """
-                    data = self.sefaria_api.lookup_word(word)
-                    if not data:
-                        return
-                    formatted = []
-                    for e in data:
-                        # Speichere zunächst den vollständigen Rohdatensatz ab.
-                        try:
-                            raw_headword = e.get('headword') or word
-                            self.jastrow_dict.add_entry(raw_headword, e)
-                        except Exception:
-                            pass
-                        # Formatiere den Eintrag für die Anzeige
-                        try:
-                            fmt = SefariaEntryFormatter.format_entry(e)
-                            formatted.append(fmt)
-                            result['sefaria_entries'].append(fmt)
-                            # Auch die formatierte Version im Wörterbuch speichern. Durch
-                            # die Duplikaterkennung wird sie bei identischer rid ignoriert,
-                            # falls der Rohdatensatz bereits gespeichert wurde.
-                            headword_fmt = fmt.get('headword') or raw_headword
+                    data = self.sefaria_api.lookup_word(word_clean)
+                    if data:
+                        formatted = []
+                        for e in data:
+                            formatted_entry = SefariaEntryFormatter.format_entry(e)
+                            formatted.append(formatted_entry)
+                            result['sefaria_entries'].append(formatted_entry)
+                            # Füge diesen Eintrag in das Jastrow‑Wörterbuch ein, falls vorhanden.
+                            # Es wird nur das Kopfwort (ohne Niqqud) verwendet, um alphabetisch
+                            # zu sortieren. Der Eintrag selbst wird vollständig gespeichert.
                             try:
-                                self.jastrow_dict.add_entry(headword_fmt, fmt)
+                                headword = formatted_entry.get('headword') or ''
+                                self.jastrow_dict.add_entry(headword, formatted_entry)
                             except Exception:
                                 pass
-                        except Exception:
-                            pass
-                    # Speichere formatierte Einträge in sefaria_entries für spätere Verwendung
-                    if formatted:
+                        # Speichere formatierte Einträge in sefaria_entries für spätere Verwendung
                         try:
                             self.sefaria_entries[word_no_niqqud] = {'entries': formatted}
                         except Exception:
@@ -1278,10 +1280,7 @@ class JastrowDictionary:
         # persistiert. Fehler werden ignoriert, Duplikate intern abgefangen.
         for entry in result.get('sefaria_entries', []):
             try:
-                # Verwende das Kopfwort oder fallweise das gesuchte Wort als Schlüssel,
-                # damit auch Einträge ohne explizites headword erfasst werden.
-                hw = entry.get('headword') or word
-                self.jastrow_dict.add_entry(hw, entry)
+                self.jastrow_dict.add_entry(entry.get('headword', ''), entry)
             except Exception:
                 pass
 
@@ -1380,37 +1379,10 @@ class JastrowDictionary:
             webbrowser.open(f"https://www.sefaria.org/search?q={urllib.parse.quote(word)}")
         
         def refresh_sefaria():
-            """
-            Lädt den aktuellen Sefaria‑Eintrag erneut aus der API. Neben dem
-            Aktualisieren der Statusanzeige werden alle zurückgegebenen
-            Einträge – sowohl Roh‑ als auch formatierte Versionen – im
-            lokalen Wörterbuch gespeichert und der Cache aktualisiert.
-            """
             status_var.set("Aktualisiere...")
             def fetch():
                 data = self.sefaria_api.lookup_word(word)
                 if data:
-                    # Rohdaten und formatierte Daten speichern
-                    formatted = []
-                    for e in data:
-                        try:
-                            raw_head = e.get('headword') or word
-                            self.jastrow_dict.add_entry(raw_head, e)
-                        except Exception:
-                            pass
-                        try:
-                            fmt = SefariaEntryFormatter.format_entry(e)
-                            formatted.append(fmt)
-                            hw = fmt.get('headword') or raw_head
-                            self.jastrow_dict.add_entry(hw, fmt)
-                        except Exception:
-                            pass
-                    # Cache aktualisieren
-                    try:
-                        clean_key = ''.join(c for c in word if not ('\u0591' <= c <= '\u05C7'))
-                        self.sefaria_entries[clean_key] = {'entries': formatted}
-                    except Exception:
-                        pass
                     status_var.set("Aktualisiert! Neu suchen.")
                 else:
                     status_var.set("Keine Daten")
@@ -1792,22 +1764,7 @@ class JastrowDictionary:
             if not entries:
                 data = self.sefaria_api.lookup_word(word)
                 if data:
-                    formatted_list = []
-                    for e in data:
-                        # Speichere den Rohdatensatz und die formatierte Version im Wörterbuch
-                        try:
-                            raw_head = e.get('headword') or word
-                            self.jastrow_dict.add_entry(raw_head, e)
-                        except Exception:
-                            pass
-                        try:
-                            fmt = SefariaEntryFormatter.format_entry(e)
-                            formatted_list.append(fmt)
-                            head_fmt = fmt.get('headword') or raw_head
-                            self.jastrow_dict.add_entry(head_fmt, fmt)
-                        except Exception:
-                            pass
-                    entries = formatted_list
+                    entries = [SefariaEntryFormatter.format_entry(e) for e in data]
             parts = []
             for entry in entries:
                 for d in entry.get('definitions', []):
@@ -2380,20 +2337,13 @@ class JastrowDictionary:
                 formatted = []
                 for entry in data:
                     try:
-                        # Zunächst den vollständigen Rohdatensatz speichern
-                        raw_head = entry.get('headword') or w
-                        self.jastrow_dict.add_entry(raw_head, entry)
-                    except Exception:
-                        pass
-                    try:
-                        # Formatiere den Eintrag und speichere sowohl zur Anzeige als auch im Wörterbuch
                         fmt = SefariaEntryFormatter.format_entry(entry)
                         formatted.append(fmt)
-                        head_fmt = fmt.get('headword') or raw_head
-                        self.jastrow_dict.add_entry(head_fmt, fmt)
+                        # Fügt vollständigen Eintrag ins Wörterbuch
+                        self.jastrow_dict.add_entry(fmt.get('headword', ''), fmt)
                     except Exception:
                         pass
-                # Speichere nur die formatierten Einträge im Cache für spätere Verwendung
+                # Speichere im lokalen Sefaria‑Entries Cache
                 if formatted:
                     try:
                         self.sefaria_entries[clean] = {'entries': formatted}
