@@ -1,0 +1,7 @@
+{
+  "openai_api_key": "",
+  "translation_language": "de",
+  "api_model": "gpt-3.5-turbo",
+  "sefaria_enabled": true,
+  "auto_update_local": true
+}

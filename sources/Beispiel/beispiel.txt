@@ -1,0 +1,7 @@
+Dies ist eine Beispiel-Quelldatei.
+Loesche diesen Ordner und kopiere deine eigenen Quelltexte hierher.
+
+Die Ordnerstruktur wird automatisch erkannt:
+sources/Talmud/Bavli/Berakhot/chapter1.txt
+wird angezeigt als: Talmud > Bavli > Berakhot
+

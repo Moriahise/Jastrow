@@ -1,0 +1,848 @@
+{
+  "לא": [
+    {
+      "headword": "לֹא",
+      "headword_voweled": "לֹא",
+      "lexicon": "Jastrow Dictionary",
+      "rid": "L00003",
+      "language": "(b. h.;",
+      "pos": "",
+      "definitions": [
+        {
+          "text": " v. לַאי) not, no. Ber. I, 1 לא קרינו וכ׳ we have omitted to recite &c. Ib. III, 4 לא … ולא וכ׳ neither before nor after. Nidd. 5ᵃ לא אין להן וכ׳, no; it means &c., v. לַאו; a. v. fr.—וְלֹא indeed not? Ḥull. 4ᵇ ולא והכתיב וכ׳ indeed not (is it so that the verb הֵסִית never refers to persuasion by speech)? Do we not read &c.?; a. v. fr.—(מִצְוַת) לֹא תַעֲשֶׂה a prohibitory law, opp. עֲשֵׂה, a positive command; v. לַאו. Kidd. I, 7. Macc. 14ᵇ bot.; a. v. fr.—בְּלֹא without. Ber. 35ᵃ bot. ב׳ ברכה without pronouncing a benediction; a. v. fr.—והוא שלא, v. הוּא.",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [
+        "Jastrow, לַאי 1",
+        "Mishnah Berakhot 3:4",
+        "Niddah 5a:18",
+        "Chullin 4b:10",
+        "Makkot 14b:4",
+        "Makkot 14b:7",
+        "Makkot 14b:9",
+        "Makkot 14b:11",
+        "Makkot 14b:14",
+        "Makkot 14b:15",
+        "Makkot 14b:16",
+        "Berakhot 35a:6",
+        "Berakhot 35a:7",
+        "Berakhot 35a:12",
+        "Berakhot 35a:14",
+        "Berakhot 35a:17",
+        "Berakhot 35a:21"
+      ],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    },
+    {
+      "headword": "לֹא",
+      "headword_voweled": "לֹא",
+      "lexicon": "BDB Dictionary",
+      "rid": "BDB04762",
+      "language": "",
+      "pos": "",
+      "definitions": [
+        {
+          "text": "or לוֹא adv. not (Arabic لَا, Aramaic לָא, ܠܴܐ, Sab. לא, Assyrian lâ; not in Ethiopic: cf. Köii. 1. 236 Walker AJSL 1896, 237 ff.)—לוֹא, according to Mass. (FrMM 248), 35 times, besides בְּלוֹא 6 times, and הֲלוֹא, the orthogr. of which varies much (ib.p. 251), e.g. in S always הֲלוֹא, in Chr always הֲלֹא, on the whole הֲלוֹא 141 times, הֲלֹא 128 times; twice, according to Mass, written לו (Qr לֹא), 1 S 2:16; 20:2, once לה Dt 3:11 Kt:—not—denying objectively, like οὐ (not μὴ = אַל):—",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "in predication:",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "with a verb; so most freq., and nearly always (a) with the finite tenses, whether pf. (Gn 2:5b; 4:5 etc.) or impf. (3:4; 8:21, 22 etc.); in short circumst. clauses, as Gn 44:4 לא הרחיקו, Is 40:20 לֹא יִמּוֹט, and with a final force 41:7 Ex 28:32 (v. Ges§ 156. 3 R. b, c Dr§ 162). Governing two closely connected verbs (Dr§115, לא) Ex 28:43 וְלֹא יִשְׂאוּ עָוֹן וָמֵתוּ, Lv 19:12, 29 b Dt 7:25, 26; 19:10; 22:1 al.; and two parallel clauses (Ges§ 152. 3) Is 23:4b ψ 9:19; 44:19 Jb 3:11 al. With the impf., especially with 2 ps., לֹא often expresses (not, like אַל, a deprecation, do not …, let not …, but) a prohibition, as Gn 2:17 לֹא תֹאכַל מִמֶּנּוּ thou shalt not eat of it, 3:1, 3 Ex 20:3 לֹא־יִהְיֶה לְךָ there shall not be to thee, etc., v 13 לא תגנב, etc. With the coh. and juss. moods (which are negatived regularly by אַל), it occurs only exceptionally (Ges§109. 1 b R. 1), Gn 24:8 1 S 14:36 2 S 17:12; 18:14 1 K 2:6 Ez 48:14. (b) with the inf. (which is negatived by בִּלְתִּי, q.v.), only once, in בְּלֹא (4 a), and with לְ, in the sense of cannot, or must not; †Ju 1:19 כי לא להורושׁ for it was not (possible) to dispossess, etc. Am 6:10 לא להזכיר בשׁם י׳, 1 Ch 5:1; 15:2 (Dr§ 202. 2); cf. Aramaic לָא Dan 6:9 Ezr 6:8. On its use with the ptcp., see b c. (c) לא always negatives properly the word immed. following: hence, in a verbal sentence, where this is not the verb, some special stress rests upon it, Gn 32:29 לֹא יַעֲקֹב יֵאָמֵר עוֹד וג׳ not Jacob shall thy name be called any more, but Israel, 45:8 לֹא אַתֶּם שְׁלַחְתֶּם אֹתִי Not ye (in our idiom: It is not ye who) have sent me hither, but God, Ex 16:8 1 S 8:7 כִּי לֹא אֹתְךָ מָאָסוּ כִּי אֹתִי וג׳, ψ 115:17; without a foll. correcting clause, Gn 38:9 Nu 16:29 לֹא י׳ שְׁלָחָנִי ׃ Not י׳ (but another) hath sent me, Dt 32:27 לֹא י׳ פָּעַל זֹאת, 1 Ch 17:4 Dt 8:9 Is 28:28 לא לנצח … not for ever (but only for a while) … (so 57:16 ψ 9:19; 49:20; 103:9; but Is 13:20 לא תשׁב לנצח is, will not be inhabited for ever), Is 43:22 Jb 13:16; 32:9; hence rhetorically, insinuating something very different, not named, 2 K 6:10 not once, and not twice (but repeatedly), Ezr 10:13 Je 4:11 a wind לֹא לְזָרוֹת וְלוֹא לְהָבַֽר׃ not to winnow, and not to cleanse (but to exterminate), Is 45:13; 48:1b Jos 24:12 Dn 11:20, 29 Jb 34:20 לֹא בְיָד (but by a Divine agency: cf. Dn 2:34; also Jb 20:26 אֵשׁ לֹא נֻפָּ֑ח fire not blown upon [but kindled from heaven], Lam 4:6; and אין Is 47:14). (d) standing alone: (a) אִם־לֹא if not, Gn 18:21 וְאִם־לֹא אֵדָֽעָה׃, 24:49; 42:16 Jb 9:24; 24:25; (β) הֲ … אִם־לֹא, or not, Gn 24:21 waiting to know הַהִצְלִיחַ י׳ דַּדְכּוֹ אִם־לֹא, 27:21; 37:32 Ex 16:4 Nu 11:23 Dt 8:2 Ju 2:22 (cf. אִם אַיִן, אַיִן 2 d β, δ). In answer to a question or request, to deny, or decline, Nay, No: Ju 12:5 ויאמר לא, Hg 2:12; לא אדני Gn 23:11; 42:10 1 S 1:15 +; often sq. כי, No: for … = No: but …, Gn 18:15 ויאמר לֹא כִּי צָחָ֑קְתְּ, 19:2 Jos 5:14; 24:21; 1 S 2:16 Qr (v. Dr), 10:19 (𝔊 MSS), 2 S 16:18; 24:24 1 K 3:22(×2) +; Jb 23:6 (strangely). (Cf., in deprecation, אַל.) (e) with an interrog. force, which however does not lie in לא as such, but (as in other cases) in the contrast with a preceding clause, or in the tone of voice (cf. וְ 1 f; Ew§ 324 a Ges§ 150. 1 Dr 1 S 11:12): Jon 4:11 אַתָּה חַסְתָּ … וַאֲנִי לֹא אָחוּס וג׳, Jb 2:10; 22:11; Ex 8:22; 2 K 5:26 Je 49:9 (‖ Ob 5 הֲלוֹא), Mal 2:15 La 3:38; and in passages, exeg. or text. doubtful (v. Comm.), 1 S 20:14 2 S 23:5 (but v. Bu), Ho 10:9 (Ew We), 11:5 (Ew), Jb 14:16b (but 𝔊 Ew Di תַעֲבֹר), La 1:12 (Ew Ke), 3:36 (Ke Bä).",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "with adjs. and substs.: (a) Gn 2:18 לֹא טוֹב הֱיוֹת הָאָדָם לְבַדּוֹ not good is man’s being alone, Ex 18:17 + often (b) Ex 4:16 לֹא אִישׁ דְּבָרִים אָנֹכִי, Am 7:14 לא נביא אנכי, Nu 23:19 לֹא אִישׁ אֵל וִיכַזֵּב, Dt 17:15 (v. אשׁר 2 b) 20:20; 32:47 1 S 15:29 2 S 18:20 לֹא אִישׁ בְּשֹׂרָה אַתָּה הַיּוֹם, 21:2 1 K 22:33 2 K 6:19 לא זֹה הדרך, Mi 2:10 Is 27:11 Ho 8:6; והמה לא אלהים Je 2:11; 16:20 2 K 19:18; 1 K 19:11(×2) לֹא בָרַעַשׁ י׳, Dt 30:12, 13 Jb 15:9; 28:14 לֹא בִי הִיא (‖ אֵין עִמָּדִי), ψ 74:9 Je 5:10 לוא לי׳ המה, 10:16; Dt 32:21 בָּנִים לֹא אֵמוּן בָּם, Je 10:14 Hb 1:14 Jb 16:17; 38:26 מִדְבָּר לֹא אָדָם בּוֹ; 1 K 22:17 לֹא אֲדֹנִים לָאֵלֶּה, Je 49:31 ψ 22:3 וְלֹא דוּמִיָּה לִי, Jb 18:17, 19; 29:12 ולא עֹזֵר לו, 30:13; 33:9; Je 2:19 וְלֹא פַחְדָּתִי אֵלַיִךְ and (that) my terror reached not unto thee, Jb 21:9; abs. Gn 29:7 לֹא־עֵת הֵאָסֵף הַמִּקְנֶה (Hg 1:2), Nu 20:5 2 K 4:23 לא חדשׁ ולא שׁבת, Is 44:19 Je 5:12 ויאמרו לוא הוא, Jb 9:32; 22:16; 36:26 (?) 41:2; Pr 19:7 (si vera l.) מְרַדֵּף אֲמָרִים לֹא־הֵמָּה words which are not, which are nought. (c) with the ptcp. לֹא is rare, a finite vb. being usually preferred (Ex 34:7 וְנַקֵּה לֹא יְנַקֶּה: Ew§ 320 c Dr§ 162): 2 S 3:34 יָדֶיךָ לֹא אֲסֻרוֹת, Ez 4:14; 22:24 Dt 28:61 ψ 38:15 כְּאִישׁ אֲשֶׁר לֹא שֹׁמֵעַ who is not hearing, Jb 12:3; 13:2 לֹא נֹפֵל אָנֹכִי מִכֶּם, Zp 3:5 (very anom.); 1 K 10:21 לא is prob. textual error. In וְהוּא לֹא שֹׂנֵא לוֹ or לא שׂנא הוא לו, Dt 4:42; 19:4, 6 Jos 20:5 (cf. אֹיֵב Nu 35:23), שׂנֵא is best construed as a subst., he being a not-hater to him aforetime.—In most of the cases under b, c, אין could have been employed; but the negation by לֹא is more pointed and forcible.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "Not in predication:",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "coupled to an adj. to negative it, like the Gk. ἀ—, but usually by way of litotes: Ho 13:13 בן לא־חכם an unwise son, ψ 36:5 דֶּרֶךְ לֹא טוֹב a way not good, 43:1 גוי לא חסיד, Pr 16:29; 30:25, 26 Ez 20:25 2 Ch 30:17: Is 16:14 לוֹא כַבִּיר, cf. 10:7 לֹא מְעַט.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "with a ptcp. Je 2:2 ארץ לא זרועה, 18:15 (the finite verb is more common: see Is 62:12 עִיר לֹא נֶעֱזָ֫בָה (cf. 54:11), Je 6:8 אֶרֶץ לוֹא נוֹשָׁ֫בָה, 15:18; 22:6; 31:18 Zp 2:1).",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "†Gn 15:13 בארץ לא להם, Je 5:19 Hab 1:6 מִשְׁכָּנוֹת לֹא־לוֹ, Pr 26:17 רִיב לֹא־לוֹ.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "with a subst., in poetry, forming a kind of compound, expressing pointedly its antithesis or negation (Germ. un- is sometimes used similarly): Dt 32:5 (?), 17, 21 a they made me jealous בְּלֹא אֵל with a not-God (with what in no respect deserved the name of God), v b בְּלֹא עָם i.e. with an unorganized horde, Am 6:13 הַשְּׂמֵחִים לְלֹא דָבָר i.e. at a thing wh. is not, an unreality (of their boasted strength), Is 10:15 כְּהָרִים מַטֶּה לֹא עֵץ like a rod’s lifting up what is no wood (but the agent wielding it), 31:8 חרב לא אישׁ, חרב לא אדם, 55:2 בלוא לחם for what is not bread, בלוא לשׂבעה for what is not for satiety, Je 5:7 וַיּשָּֽׁבְעוּ בְּלֹא אֱלֹהִים by not-goods, in late prose 2 Ch 13:9 כֹּהֵן לְלֹא אֱלֹהִים; ψ 44:13 תִּמְכֹּר עַמְּךָ בְּלֹא־הוֹן for no-value (i.e. cheaply), Pr 13:23 Jb 10:22 צלמות וְלֹא סְדָרִים darkness and disorder; so לֹא־עַמִּי Ho 1:9; 2:25: still more pregnantly Jb 26:2a מֶה־עָזַרְתָּ לְלֹא־כֹחַ (poet. for לאשׁר אין לו כח) the powerless, v 2b, 3a (Ew§ 286 g Ges§ 152. 1 n.), 39:16 הִקְשִׁיחַ בָּנֶיהָ לְלֹא לָהּ useth hardly her young ones (making them) into none of hers; and even Hb 2:6 הַמַּרְבֶּה לֹא־לוֹ what is not his own (cf. Jb 18:15 מִבְּלִי לוֹ). Cf. with a verb, and ellipse of אשׁר, Is 65:1 לְלֹא שָׁאָ֑לוּ to those who have not asked, v b Je 2:8 אַחֲרֵי לֹא יוֹעִילוּ, v 11b; also לֹא רֻחָ֫מָה Ho 1:6, 8; 2:25, and prob. Jb 31:31 לֹא נִשְׂבָּ֑ע (pf. in p.) one not satisfied.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "in circ. clauses (Dr§ 164), poet. and rare: qualifying a subst., 2 S 23:4 בֹּקֶר לֹא עָבוֹת a morning without clouds, Job 12:24 בְּתֹהוּ לֹא דֶרֶךְ in a pathless waste, 38:26a; and a verb Jb 34:24 יָרֹעַ כַּבִּירִים לֹא חֵקֶר without inquiry, ψ 59:4 לא פשׁעי ולא חטאתי (cf. v 4 בלי עון), in late prose, twice, 1 Ch 2:30, 32 וימת לא בנים (אֵין and בְּלִי, q.v., are more usual in such cases).",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "Once (according to many MSS), as a subst., Jb 6:21 כִּי־עַתָּה הֱיִיתֶם לֹא for now are ye become nothing, Hi De Kö (cf. Dn 4:32 (Aramaic) כְּלָה חֲשִׁיבִין; 𝔗 here הֲוֵיתוּן כְּלָא, and אַל Jb 24:25); but reading fluctuates (Orientals לֹא, Qr לו, Westerns, Baer (v. pp. 37, 56) לוֹ [‘now are ye become that,’ viz. the נַחַל אַכְזָב of v 15]; but even לוֹ yields a forced sense; and text is prob. wrong: Mich Ew Ol Sgf Bu כֵּן … לִי (𝔊 𝔖 also read לִי); Bö Di כִּי … לְאָ֑יִן. Cf. Köii. 1. 236 f.",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "With prefixes:—",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "†בְּלֹא31 (chiefly poet. or late), according to the varying signif. of בְּ: (a) usually with not = without, Je 22:13 בונה ביתו בלא־צדק without justice (‖ בלא משׁפט; so Ez 22:29 Pr 16:8), Is 55:1, 1 Pr 19:2, Jb 8:11 הֲיִגְאֶה־גֹּמֶא בְּלֹא בִצָּה without mire (‖ בלי מים), 30:28 בְּלֹא חַמָּה (= not through the sun), La 1:6 וילכו בלא־כח, Nu 35:22 בְּלֹא אֵיבָה … בְּלֹא צְדִיָּה, v 23 (sq. inf.) בְּלֹא רְאוֹת, 2 Ch 21:20 Ec 10:11; ψ 17:1 תְּפִלָּתִי בְּלֹא שִׂפְתֵי מִרְמָה; used more freely in Chr, 1 Ch 12:18 בְּלֹא חָמָס בְּכַפָּֽי׃, v 34 בְּלֹא לֵב וָלֵב, 2 Ch 30:18 בְּלֹא כַכָּתוּב. With ellipse of rel., La 4:14 בְּלֹא יוּכְלוּ יִגְּעוּ without (that) men are able to touch, etc. (b) of time, in not, i.e. outside of, Lv 15:25 בלא עֶת־נִדָּתָתּ, before Jb 15:32 בלא־יומו, Ec 7:17 בְּלֹא עִתֶּךְ ׃. (c) where לֹא belongs to the foll. word, and is only accidentally preceded by ב (v. supr. 2 d), Dt 32:21(×2) Je 5:7 Pr 13:23 בלא משׁפט through injustice; with בְּ pretii, ψ 44:13 Is 55:2(×2) Je 2:11 בְּלוֹא יוֹעִיל for (that which) profiteth not.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "הֲלֹא nonne? Gn 4:7 + often Inviting, as it does, an affirmative answer, it is often used, (a) especially in conversation, for pointing to a fact in such a way as to arouse the interest of the person addressed, or to win his assent: Gn 13:9 Is not the whole land before thee? 19:20; 20:5; 27:36; 29:25 Ex 4:11 Who maketh dumb or deaf, etc.? Do not I? 33:16 Ju 4:6, 14; 8:2; 9:28, 38 1 S 9:20, 21; 15:17 etc.; with a vb. in 1 ps., Jos 1:9 הלא צויתיך, Ju 6:14 הלא שׁלחתיך, 1 S 20:30; 2 S 19:23 Ru 2:9: similarly in a poet. or rhet. style, Ju 5:30 הלא ימצאו יחלקו שׁלל, Is 8:19; 10:8, 9, 11; 28:25; 29:17; 40:21, 23; 42:24; 43:19 etc., Jb 4:6, 21; 7:1; 10:10, 20, etc. (β) it has a tendency to become little more than an affirm. particle, declaring with some rhetor. emph. what is, or might be, well known: Dt 3:11 הֲלֹה הִיא בְרַבַּת בְּנֵי עַמּוֹן, 11:30 1 S 21:12 הלוא זה דוד וג׳ (cf. 29:3, 5 2 S 11:3), 23:19; 26:1 2 S 15:35; it is thus nearly = הִנֵּה (𝔊 sometimes represents it by ἰδού, as Jos 1:9 Ju 6:14 Ru 2:9 2 S 15:35); so especially in the phrase of the compiler of K, And the rest of the acts of … הֲלֹא הֵם (הֵמָּה) כְּתוּבִים are they not written in, etc.? 1 K 11:41; 14:29 + often (with which there interchanges הִנָּם כְּתוּבִים 1 K 14:19 2 K 15:11; 15:26, 31, which is gen. used by the Chr, 2 Ch 16:11; 20:34, etc.), Jos 10:13 (cf. 2 S 1:18 הִנֵּה), 1 K 8:53 𝔊, Est 10:2; ψ 56:14 (strangely: contr. 116:8).—הֲלֹא הִנֵּה †Hb 2:13 2 Ch 25:26 (הִנָּם).—On Ju 14:15, see הֲ 1 end.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "†וָלֹ֕א and not = and if not, 2 S 13:26 2 K 5:17. Comp. וָיֵשׁ.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "†כְּלוֹא Ob 16 והיו כלוא היו, poet. for כאשׁר, as though they had not been.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "†לְלֹא without, lit. in the condition of no … 2 Ch 15:3 (comp. לְאֵין, also in Chr). Elsewhere לא belongs to the foll. word, Am 6:13 2 Ch 13:9 Is 65:1(×2) Jb 26:2, 3; 39:16 (v. supr. 2 d).",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "—Fifteen times, according to Mas. (v. De ψ 100:3 FrMM 247 Str Prol. Cr. 84), לא is written by error for לוֹ, viz. Ex 21:8 Lv 11:21; 25:30 1 S 2:3 2 S 16:18 2 K 8:10 Is 9:2; 63:9 ψ 100:3; 139:16 Jb 13:15; 41:4 Pr 19:7; 26:2 Ezr 4:2 (always with Qr לוֹ). The passages must be considered each upon its own merits: in some לוֹ yields a preferable sense; but this is not the case in all. There is the same קרי (rightly) on Is 49:5 1 Ch 11:20; but these were not considered to rest upon equal authority, and are hence not reckoned with the fifteen.—In Ju 21:22 (v. GFM), 1 S 13:13; 20:14(×2), and in Jb 9:33 (לֹא יֵשׁ), read prob. לֻא for לֹא.",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    },
+    {
+      "headword": "לֹא",
+      "headword_voweled": "לֹא",
+      "lexicon": "BDB Augmented Strong",
+      "rid": "",
+      "language": "heb",
+      "pos": "adv",
+      "definitions": [
+        {
+          "text": "not,  no",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "not (with verb-absolute prohibition)",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "not (with modifier-negation)",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "nothing (subst)",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "without (with particle)",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "before (of time)",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    }
+  ],
+  "לו": [
+    {
+      "headword": "לוּ",
+      "headword_voweled": "לוּ",
+      "lexicon": "BDB Dictionary",
+      "rid": "BDB04848",
+      "language": "",
+      "pos": "",
+      "definitions": [
+        {
+          "text": "and לוּא (†1 S 14:30; Is 48:18; 63:19), also לֻא (Qr לוּ), †2 S 18:12; 19:7 (Arabic لَوْ, Aramaic ܠܘܰܝ, לְוַי, Mishn. לְוַי, Assyrian lû, with opt. force, Dl§§ 78 end, 93, 145; cf. Köii. 333), conj. if, O that:—",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "if (stating a case which has not been, or is not likely to be, realized):",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "sq. pf. (so mostly), Dt 32:29 לו חכמו ישׂכילו זאת if they had been wise (which they are not), they would understand this; Mi 2:11 (apod. וְהָיָה); Ju 8:19; 13:23 לו חפץ י׳ להמיתנו לא לקח if J. had desired to slay us, he would not have taken, &c. 1 S 14:30 2 S 19:7.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "sq. impf. Ez 14:15 if I were to send, &c. (but read prob. אוֹ, cf. v 17, 19).",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "sq. ptcp., 2 S 18:12 וְלֻא אָנֹכִי שֹׁקֵל and though I should be weighing 1000 pieces of silver upon my hand, I would not, &c. ψ 81:14–17 לו עמי שֹׁמֵעַ לי if my people were hearkening to me, … quickly would I bow down, &c.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "sq. יֵשׁ Job 16:4.—With the apod. omitted, Gn 50:15 לוּ יִשְׁמְמֵנוּ if Joseph were to hate us (how should we fare then?).",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "If only …! i.e. O that! would that! (cf. εἰ γάρ, εἴθε) usually sq. perf., as Nu 14:2(×2) לוּ מַתְנוּ if only we had died in the land of Egypt! 20:3; Jos 7:7 וְלוּ הוֹאַלְנוּ וַנֵּשֶׁב Is 48:18; 63:19; sq. יֵשׁ Nu 22:29; sq. impf. Gn 17:18 לו יחיה O that Ishmael might live before thee! Jb 6:2; sq. juss. Gn 30:34 לו יהי כדברך; sq. imv. 23:13 אם אתה לוּ שׁמעני if thou—O that thou wouldst hear me! (+ prob. v 5 לאמר ׃ לוּ שׁמעני for לאמר לוֹ ׃ שׁ׳, and similarly v 15).—Read also prob. לֻא for Mas. לֹא Ju 21:22 (with כִּי עַתָּה for כָּעֵת), 1 S 13:13; 20:14(×2) Jb 9:33 (sq. יֵשׁ); and perhaps 14:4 (Ew Kö).",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    },
+    {
+      "headword": "לוֹ",
+      "headword_voweled": "לוֹ",
+      "lexicon": "Klein Dictionary",
+      "rid": "L00186",
+      "language": "",
+      "pos": "",
+      "definitions": [
+        {
+          "text": "inflected pers. pron. meaning ‘to him’.",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [
+        "Klein Dictionary, לְ◌ 1",
+        "Klein Dictionary, לְ◌ 1"
+      ],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    },
+    {
+      "headword": "לוֹ",
+      "headword_voweled": "לוֹ",
+      "lexicon": "Jastrow Dictionary",
+      "rid": "L00170",
+      "language": "",
+      "pos": "",
+      "definitions": [
+        {
+          "text": "unto him; v. ל־.",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    },
+    {
+      "headword": "לוּ",
+      "headword_voweled": "לוּ",
+      "lexicon": "Jastrow Dictionary",
+      "rid": "L00171",
+      "language": "",
+      "pos": "",
+      "definitions": [
+        {
+          "text": " (homiletic interpret.) = לֹא. Gen. R. s. 73. כל דבר … היה חוזר בו י׳ פעמים למפרע שנ׳ הֵן לוּ whatever agreements Laban made with Jacob, he retracted mentally ten times, for we read (Gen. XXX, 34) hen, lu yes, no; Yalk. ib. 130.",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [
+        "Bereishit Rabbah 73:6",
+        "Bereishit Rabbah 73:9"
+      ],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    },
+    {
+      "headword": "לוּ",
+      "headword_voweled": "לוּ",
+      "lexicon": "Klein Dictionary",
+      "rid": "L00187",
+      "language": "",
+      "pos": "adv.",
+      "definitions": [
+        {
+          "text": "Would that! Oh that! if only!",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [
+        "Klein Dictionary, אִלּוּ 1",
+        "Klein Dictionary, לְוַאי ᴵ 1",
+        "Klein Dictionary, לְוַי 1",
+        "Klein Dictionary, אִלּוּ 1",
+        "Klein Dictionary, אִלּוּ 1",
+        "Klein Dictionary, אִלּוּ 1",
+        "Klein Dictionary, לְוַאי ᴵ 1",
+        "Klein Dictionary, לוּלֵא 1",
+        "Klein Dictionary, לוּלֵי 1",
+        "Klein Dictionary, אַחֲלַי 1",
+        "Klein Dictionary, לְוַאי ᴵ 1",
+        "Klein Dictionary, לְוַי 1",
+        "Klein Dictionary, אִלּוּ 1",
+        "Klein Dictionary, אִלּוּ 1",
+        "Klein Dictionary, אִלּוּ 1",
+        "Klein Dictionary, אִלּוּ 1",
+        "Klein Dictionary, לְוַאי ᴵ 1",
+        "Klein Dictionary, לוּלֵא 1",
+        "Klein Dictionary, לוּלֵי 1",
+        "Klein Dictionary, אַחֲלַי 1"
+      ],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    }
+  ],
+  "לוא": [
+    {
+      "headword": "לוּא",
+      "headword_voweled": "לוּא",
+      "lexicon": "BDB Augmented Strong",
+      "rid": "",
+      "language": "heb",
+      "pos": "conj",
+      "definitions": [
+        {
+          "text": "if,  oh that!,  if only!",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "if (unlikely condition)",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "if only!,  oh that!,  would that!",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    }
+  ],
+  "ס": [
+    {
+      "headword": "ס",
+      "headword_voweled": "ס",
+      "lexicon": "Jastrow Dictionary",
+      "rid": "O00000",
+      "language": "",
+      "pos": "",
+      "definitions": [
+        {
+          "text": "Samekh, the fifteenth letter of the Alphabet. It interchanges with שׂ, e.g. פָּרַס a. פָּרַשׂ, נָסָא a. נָשָׂא; a. fr.; with ז, q. v.; with צ, as סַוָּאר a. צַוָּאר.—ס preformative for Safel forms, as in סקבל, סרהב &c.",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    },
+    {
+      "headword": "ס",
+      "headword_voweled": "ס",
+      "lexicon": "Klein Dictionary",
+      "rid": "O00001",
+      "language": "",
+      "pos": "",
+      "definitions": [
+        {
+          "text": "The fifteenth letter of the Hebrew alphabet. The name of the letter, ‘Samekh’, prob. derives from סמך and lit. means ‘support, fulcrum’; so called in allusion to its ancient Heb. form. In PBH it has the numerical value of sixty. When (as in most cases) it is an independent sibilant (beside שׂ and שׁ), its Arab. correspondence is s; cp. e.g. אָסַר and Arab. ’asara (= he bound, tied). Sometimes, however, it is secondary standing for orig. שׂ, in which case its Arab. equivalent is sh; cp. e.g. Heb. סְתָו and Arab. shitā’ (= winter). This change of שׂ to ס is quite frequent in NH and in Aram.; in Syriac the שׂ has been replaced entirely by ס. ס alternates also with ז (see the introductory article to letter ז). It often becomes צ, esp. in the vicinity of ח or emphatic sounds; cp. e.g. סחן ᴵ (= to be strong), with Arab. ḥaṣuna (= was strong); קסם (= to practice divination), with Syr. קְצַם (= he practiced divination); פֶּסַח (= Passover) with Syr. פֶּצְחָא (of s.m.); עקץ (= to sting, prick) with Syr. עַקֵּס (= it stung, it pricked). In some rare cases ס represents orig. שׁ; cp. סִרְיוֹן, a secondary form of שִׁרְיוֹן (= coat of arms, armor); Heb. כָּנַס, BAram., Aram. and Syr. כְּנַשׁ (= he gathered, collected).",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [
+        "Klein Dictionary, סמך 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, אסר 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, סְתָו 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, ס 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, ס 1",
+        "Klein Dictionary, ס 1",
+        "Klein Dictionary, ז 1",
+        "Klein Dictionary, ז 1",
+        "Klein Dictionary, צ 1",
+        "Klein Dictionary, ח 1",
+        "Klein Dictionary, קסם ᴵ 1",
+        "Klein Dictionary, פסח ᴵ 1",
+        "Klein Dictionary, עקץ ᴵ 1",
+        "Klein Dictionary, ס 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, סִרְיוֹן 1",
+        "Klein Dictionary, שִׁרְיוֹן 1",
+        "Klein Dictionary, כנס 1",
+        "Klein Dictionary, סמך 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, אסר 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, סְתָו 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, ס 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, ס 1",
+        "Klein Dictionary, ס 1",
+        "Klein Dictionary, ז 1",
+        "Klein Dictionary, ז 1",
+        "Klein Dictionary, צ 1",
+        "Klein Dictionary, ח 1",
+        "Klein Dictionary, קסם ᴵ 1",
+        "Klein Dictionary, פסח ᴵ 1",
+        "Klein Dictionary, עקץ ᴵ 1",
+        "Klein Dictionary, ס 1",
+        "Klein Dictionary, ש 1",
+        "Klein Dictionary, סִרְיוֹן 1",
+        "Klein Dictionary, שִׁרְיוֹן 1",
+        "Klein Dictionary, כנס 1"
+      ],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    }
+  ],
+  "עזר": [
+    {
+      "headword": "עָזַר",
+      "headword_voweled": "עָזַר",
+      "lexicon": "BDB Augmented Strong",
+      "rid": "",
+      "language": "heb",
+      "pos": "v",
+      "definitions": [
+        {
+          "text": "to help,  succour,  support",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": " to help",
+          "depth": 1,
+          "grammar": {
+            "verbal_stem": "Qal"
+          },
+          "notes": ""
+        },
+        {
+          "text": " to be helped",
+          "depth": 1,
+          "grammar": {
+            "verbal_stem": "Niphal"
+          },
+          "notes": ""
+        },
+        {
+          "text": " to help",
+          "depth": 1,
+          "grammar": {
+            "verbal_stem": "Hiphil"
+          },
+          "notes": ""
+        }
+      ],
+      "refs": [],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    },
+    {
+      "headword": "עָזַר",
+      "headword_voweled": "עָזַר",
+      "lexicon": "BDB Dictionary",
+      "rid": "BDB07177",
+      "language": "",
+      "pos": "",
+      "definitions": [
+        {
+          "text": "vb. help, succour (NH n. עֶזְרָה help; Ph. in deriv. and cpds. Lzb338 f.; Arabic عَذَرَ excuse, exculpate, also aid; Aramaic ܥܕܰܪ help, Palm. עדר, rarely עזר Lzb338 Cook89.90);—",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "Pf. 3 ms. sf. עֲזָרָ֑נִי ψ 118:13, עֲזָֽרְךָ 1 Ch 12:19; 3 pl. sf. עֲזָרֻם 1 Ch 12:20, etc.; Impf. 3 ms. יַעֲזָר־ Is 50:7, 9, sf. יַעְזְרֶךָּ Is 44:2; 3 mpl. יַעְזֹ֑רוּ Is 30:7; 41:6, וַיַּעְזְרוּ 1 K 1:7, sf. יַעַזְרֻנִי ψ 119:175, etc.; Imv. ms. sf. עָזְרֵנִי ψ 109:26; 119:86 + Jos 10:4 Kt, mpl. sf. עִזְרֻנִי Qr; etc.; Inf. cstr. לַעֲזֹר 1 Ch 22:17, לַעֲזוֹר 18:5, לַעְזֹר Jos 10:33 + 5 times, לַעְזוֹר 2 Ch 25:8 + 2 S 18:3 Qr (> Kt לַעֲזִיר Hiph.); sf. לְעָזְרֵנִי 1 Ch 12:17 + 2 times, etc.; Pt. act. עֹזֵר 1 K 20:16 +, etc.; pass. עָזֻר Is 31:3;—help, c. acc. pers. 1 K 20:16; Jos 1:14 (D), Is 41:6 + 2 Ch 28:23 reading עֹזְרִים Ges§ 53 o, for MT מַעְזְרִים, appar. Hiph.; subj. false gods); c. acc. loc. (city) Jos 10:33 (D); especially c. sf. pers. Jos 10:4, 6 (+ הוֹשִׁיעַ; both JE), 1 Ch 12:18, 20, 23 (van d. H. v 17, 19, 22), 2 Ch 32:3; Ezr 8:22 (+ מִן of enemy), 10:15; Dn 10:13 (subj. Michael); subj. often God (י׳), c. acc. pers. ψ 10:14; 1 Ch 15:26, usually sf. Gn 49:25 (poem in J), 1 S 7:12; Is 41:10, 13, 14 + 12 times + 2 Ch 26:7 (c. עַל against), ψ 37:40 (+ פִּלֵּט), 46:6 (sf. of city), 109:26 (‖ הוֹשִׁיעַ); subj. false gods Dt 32:8; 2 Ch 28:23; c. לְ pers. 2 S 8:5 + 1 Ch 18:5 + 4 times + 2 S 18:3 (read Qr לַעֲזוֹר, or לְעֹזֵר? cf. HPS); subj. י׳ Is 50:7, 9; c. עִם pers. 1 Ch 12:22 (van d. H. v 21; + עַל against); c. אַחֲרֵי pers. (constr. praegn.) 1 K 1:7; c. בְּ pers. against whom 2 Ch 20:23 (+ inf.); c. בֵּין … לְ, of י׳, 2 Ch 14:10; abs. Is 30:7; 2 Ch 26:13 (+ עַל against), 28:16; ע׳ לְרָעָה Zc 1:15 they helped, with evil result; י׳ subj., 2 Ch 25:8 (opp. הַכְשִׁיל); also pt. c. sf. Ez 30:8 + 3 times; c. לְ pers. 2 K 14:26 + 5 times; of י׳ ψ 30:11; 54:6; abs. Is 31:3; 63:5 Je 47:4 ψ 22:12; 107:12; cstr. עֹזְרֵי הַמִּלְחָמָה 1 Ch 12:1, עֹזְרֵי רָ֑הַב Jb 9:13 (v. רַהַב); Pt. pass. abs. as subst. he who is helped Is 31:3.",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "Pf. וְנֶעֱזָרְ֑תִּי ψ 28:7 I am helped (sc. by י׳); Impf. 3 mpl. וַיֵּעָֽזְרוּ 1 Ch 5:20 (sc. id.; + עַל against), c. n. cogn. יֵעָֽזְרוּ עֵזֶר מְעָט Dn 11:34; Inf. cstr. הִפְלִיא לְהֵעָזֵר 2 Ch 26:15 he was wonderfully helped (lit. made wonderful to be helped).",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "dub.: Inf. cstr. 2 S 18:3 Kt, Pt. pl. מַעְזְרִים 2 Ch 28:23, v. Qal.",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    }
+  ],
+  "שמר": [
+    {
+      "headword": "שָׁמַר",
+      "headword_voweled": "שָׁמַר",
+      "lexicon": "BDB Augmented Strong",
+      "rid": "",
+      "language": "heb",
+      "pos": "v",
+      "definitions": [
+        {
+          "text": "to keep,  guard,  observe, give heed",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to keep,  have charge of",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to keep,  guard,  keep watch and ward,  protect,  save life",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "watch,  watchman (participle)",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to watch for,  wait for",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to watch,  observe",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to keep,  retain,  treasure up (in memory)",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to keep (within bounds), restrain",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to observe, celebrate, keep (sabbath or covenant or commands), perform (vow)",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to keep, preserve, protect",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to keep, reserve",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to be on one's guard, take heed, take care, beware",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to keep oneself, refrain, abstain",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "to be kept, be guarded",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": " to keep, pay heed",
+          "depth": 1,
+          "grammar": {
+            "verbal_stem": "Piel"
+          },
+          "notes": ""
+        },
+        {
+          "text": " to keep oneself from",
+          "depth": 1,
+          "grammar": {
+            "verbal_stem": "Hithpael"
+          },
+          "notes": ""
+        }
+      ],
+      "refs": [],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    },
+    {
+      "headword": "שָׁמַר",
+      "headword_voweled": "שָׁמַר",
+      "lexicon": "BDB Dictionary",
+      "rid": "BDB10398",
+      "language": "",
+      "pos": "",
+      "definitions": [
+        {
+          "text": "vb. keep, watch, preserve (NH id.; Ph. שמר in n.pr. and (Pun.) = watchman; TelAm. šimiru is perhaps overseer (Canaanism), WklNo. 80, 1, 23; Mand. סמירא preserved NöM 46; cf. Arabic سَمَرَ converse by night, stay awake (v. LagBN 105); BaNB 175 f.; ES 43 infers from ܬܶܡܪܳܐ eyelid (cf. [שְׁמֻרָה] infr.), and Arabicثَمَلَ support, aid, protect (l = r), that two √ √ are combined in Heb.; but proof insuff.);—",
+          "depth": 0,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "Pf. 3 ms. שׁ׳ Gn 37:11 +, etc.; Impf. 3 ms. יִשְׁמֹר 1 S 2:9 +, יִשְׁמָר־ Je 5:24 +, sf. 3 ms. יִשְׁמְרֶנּוּ Ex 21:29, 36; 3 fs. sf. תִּשְׁמוּרֵ֑ם Pr 14:3 (read תִּשְׁמְרוּם, v. Ges§ 47 g Toy), etc.; Imv. ms. שְׁמֹר Jb 2:6 +, שָׁמְרָה 1 Ch 29:18 +; mpl. שִׁמְרוּ Jos 6:18 +, etc.; Inf. abs. שָׁמוֹר Dt 5:12 +; cstr. שְׁמֹר Gn 3:24 +, sf. שָׁמְרָהּ 2:15, etc.; Pt. act. שֹׁמֵר 1 S 1:12 +, etc.; pass. שָׁמוּר Ec 5:12 (1 S 9:24 v. infr.), etc.;—[Synon. I. נָצַר, נָטַר, q.v.]:",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "keep, have charge of, garden Gn 2:15 (J), ark 1 S 7:1, property in trust Ex 22:6, 9 (E), cf. 1 S 25:21; tend flock Gn 30:31 (E), cf. Zc 3:7 Nu 3:8 (P); so perhaps (obj. om.) Ho 12:13 (where שׁ׳ chosen for parallelism Now Marti al.); Pt. הֲשֹׁמֵר אָחִי אָנֹ֑כִי Gn 4:9 (J), שׁ׳ of sheep 1 S 17:20, שׁ׳ הַכֵּלִים v 22, שׁ׳ הַבְּגָדִים 2 K 22:14 2 Ch 34:22, שׁ׳ הַנָּשִׁים Est 2:3, 8, 15, cf. v 14, etc.",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "keep, guard, captives Jos 10:18 (J), 1 K 20:39, דֶּרֶךְ Gn 3:24 (J); keep watch and ward, אֶל pers. over whom 1 S 26:15 (ψ 59:10 v. 3 end), עַל pers. v 16 Pr 6:22; בַּנַּעַר 2 S 18:12 have a care of (read לִי for מִי 𝔊), cf. 2 K 9:14; in hostile sense, אֶל הָעִיר (in siege) 2 S 11:16, עַל חַטָּאתִי Jb 14:16 (but read תַּעֲבֹר c. 𝔊 Ew Di Du al. [not Hi Bu]); abs. c. מֵעַל Ec 5:7 watcheth above, etc. (v. p. 759 a d); keep one’s mouth, be prudent of speech †Pr 21:23, cf. Mi 7:5; keep = protect, save, one’s life, נֶפֶשׁ †Pr 13:3; 16:17; 19:16; 22:5, another’s Jb 2:6; in Pr, acc. pers., subj. wisdom, 4:6 she shall preserve thee, cf. (+ מִן of evil) 6:24; 7:5; especially Pt. watch, watchman, of city Is 21:11(×2), 12; 62:5 (fig.), Ct 3:3; 5:7(×2) ψ 127:1; שׁ׳ הַסַּף (in temple) Je 35:4 + (v. סַף), הַשּׁ׳ פֶּתַח בֵּית הַמֶּלֶךְ 1 K 14:27 = 2 Ch 12:10, שׁ׳ הַשְּׁעָרִים Ne 13:22, שֹׁמְרֵי הַבַּיִת (fig.) Ec 12:3; שׁ׳ הַבַּיִת keep the house (of David’s concubines) †2 S 15:16; 16:21; 20:3; שֹׁמֵר הַכֵּלִים 1 S 17:22, שׁ׳ הַבְּגָדִים 2 K 22:14, שׁ׳ הַפַּרְדֵּס Ne 2:8, שׁ׳ הַנָּשִׁים Est 2:3, 14, 15, שֹׁמְרִים abs. Ju 7:19 Je 51:12.",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "hence watch for, wait for, acc. pers. 1 S 19:11 (to kill him), cf. ψ 59:1 (title; acc. הַבַּיִת); c. עֲקֵבַי ψ 56:7 = dog my steps, 71:10 Je 20:10; = watch (suspiciously) Jb 10:14; 13:27; 33:11; abs. הַשֹּׁמְרִים Ju 1:24; wait for, נֶשֶׁף Jb 24:15, לַבֹּקֶר ψ 130:6(×2).",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "watch, observe, acc. rei 1 S 1:12 Ec 11:4 Jb 39:1 Je 8:7 (of birds), with intelligence Is 42:20 ψ 107:43; acc. pers. 37:37 (‖ ראה), Zc 11:11; acc. of sin ψ 31:7; 130:3; acc. rei, for the purpose of avoiding, 17:4.",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "keep, retain, of storing up (food) Gn 41:35 (E); abs. Ec 3:6 (opp. הִשְׁלִיךְ); treasure up (in memory) Gn 37:11 (E), cf. Mal 2:7 1 Ch 29:18 Pr 4:21 (בְּתוֹךְ לְבָבֶ֑ךָ), 22:18 (בְּבִטְנֶ֑ךָ); retain wrath Am 1:11 (read שָׁמַר לָנֶצַח We Now GASm Marti; v. also נָטַר 1) + (anger om.) Je 3:5 (‖ נטר).",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "keep within bounds, restrain, obj. שׁוֹר Ex 21:29, 36 (E); c. acc. hand, מִן of evil Is 56:2; fig. keep thy foot, c. cl. temp. Ec. 4:17; אֶשׁ׳־לְפִי מַחְסוֹם ψ (39:2 𝔊 Du al. אָשִׂימָה); appar. reflex. (= Niph.), †Jos 6:18 (+ מִן־הַחֵרֶם), poss. sc. נַפְשְׁכֶם Di.",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "observe, celebrate, acc. of festival, etc., Ex 23:15 (E), 34:18 (J), 12:17, of day v 17 (P), of month Dt 16:1.",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "keep sabbath †Dt 5:12 Lv 19:3, 30; 26:2 (all H), Ex 31:13, 14, 16 (P), Is 56:4, also (+ מֵחַלְּלוֹ) v 2, 6.",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "of other obligations: keep covenant Ez 17:14, especially covenant of י׳ Dt 29:8; 1 K 11:11 + 5 times, שְׁבֻעַת י׳ 1 K 2:43, perform vow Dt 23:24; keep commands Je 35:18; Ez 20:18; especially מִצְוֹת, חֻקִּים, עֲבֹדָה, etc., of י׳ (sometimes ‖ נצר), Ex 20:6 = Dt 5:10; Am 2:4; 1 K 2:3 ψ 119:8, 17, 34 + very often (c. 120 times); שׁ׳ דֶּרֶךְ י׳ Gn 18:19 (J) + 4 times, דַּרְכֵי י׳ 2 S 22:22 = ψ 18:22, ד׳ י׳ om. Ju 2:22b; שׁ׳ אָרְחוֹת צַדִּיקִים Pr 2:20 (‖ תֵּלֵךְ בְּדֶרֶךְ טוֹבִים), שׁ׳ דְּרָכַי (ways of wisdom) 8:32 (ψ 17:4 v. 1 d); keep, discharge an office, כְּהֻנָּה Nu 3:10; 18:7 (both P), abs. 2 Ch 5:11; a function or duty, especially שׁ׳ מִשְׁמֶרֶת Lv 8:35; Nu 1:53 + c. 32 times (v. מ׳ infr.); acc. of obligation often om., especially D (and RD) keep and do Dt 4:6; 7:12 + 8 times; to do 5:1, 29 + 16 times D + 3 times, etc.",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "observe = follow dictates of (prudence, justice, kindness, wisdom) Ho 12:7 (חֶסֶד וּמִשְׁפָּט), Is 56:1; Pr 4:4; 5:2; 7:1, 2; bad sense, observe vanities ψ 31:7.—Doubtful are: לִשְׁמֹר abs. Ho 4:10, very strange (conj. in We Now Marti); שָׁמוּר 1 S 9:24, HPS אֵחַרְנוּ, cf. Now BuComm.; ψ 59:10 read עֻוִּי אֵלֶיךָ אֲוַמֵּ֑רָה (as v 18, 𝔖 Che Bae).",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "sometimes י׳ subj.:",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "keep, preserve, protect, acc. pers., + ב of way, etc., Gn 28:15, 20 (J), Ex 23:20 (E; of מַלְאָךְ), ψ 91:11 (מ׳), Jos 24:17 (E); acc. pers. (or נפשׁ) only: 1 S 30:23; Je 31:9; Nu 6:24 (P), Jb 29:2 ψ 16:1 + 10 times ψψ; + מִן ψ 121:7 + 2 times; acc. רַגְלַי 1 S 2:9, cf. Pr 3:26 (מִן); Pt. שֹׁמְרֶ֑ךָ ψ 121:3, 5, cf. v 4, etc.; acc. of city 127:1.",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "c. acc. בְּרִית, ל pers. Dt 7:12, + חֶסֶד v 7 + 5 times, הַשּׁ׳ אֱמֶת לְעוֹלָם ψ 146:6; הַשְּׁבֻעָה Dt 7:8, etc.; pass. of covenant (י׳ agent) עֲרוּכָה בַכֹּל וּשְׁמֻרָה 2 S 23:5 (legal terminology, Dr).",
+          "depth": 3,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "keep, reserve, weeks of harvest Je 5:24 (ל pers.).",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "Pf. 3 ms. נִשְׁמַר 2 S 20:10, etc.; Impf. 3 fs. תִּשָּׁמֵר Ju 13:13; 2 mpl. תִּשָּׁמִ֑רוּ Ex 23:13; Imv. ms. הִשָּׁמֵר Is 7:4 (לְךָ) הִשָּׁ֫מֶר Gn 24:6 +; fs. הִשָּֽׁמְרִי Ju 13:4, etc.;—",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "be on one’s guard, c. בַּחֶרֶב 2 S 20:10 by reason of the sword, i.e. against it; c. ב temp. 1 S 19:2, שָׁם 2 K 6:10; take heed Ex 23:13 (E) Dt 2:4; c. מִן pers. Ex 23:21 (E), Je 9:3; מִן rei Ju 13:13; Dt 23:10; מִן inf. take care not to, etc. Gn 31:29 (E), 2 K 6:9; inf. without מִן Ex 19:12 (J), but read prob. מֵעֲלוֹת; sq. פֶּן lest Gn 24:6 (J) + 11 times (especially Dt); c. (וְ)אַל juss. Ex 10:28 (J), Ju 13:4; Jb 36:21, c. Imv. coörd. Is 7:4.—Very often Imv. (24 times), especially in phr. הִשָּׁמֶר־לְךָ (12 times), הִשָּׁמְרוּ לִכֶם (3 times); + לְנַפְשֹׁתֵיכֶם Dt 4:15; Jos 23:11 (RD; + inf.); + בְּנַפ׳ Je 17:21 appar. ב pret. on peril of your life (cf. ב III. 3 a), so perhaps also בְּרוּחֲכֶם Mal 2:15, 16 (We Now).",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "keep oneself, refrain, abstain, מֵאִשָּׁה 1 S 21:5.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "be kept, guarded, Ho 12:14 (cf. שׁ׳ of Jacob v 13); be preserved (by י׳) ψ 37:28 (לִעוֹלָם), but read prob. נִשְׁמָ֑דוּ (לְעוֹלָם) עַוָּלִים Hup-Ri (Now) Che Bae Du Dr.",
+          "depth": 2,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "Pt. pl. מְשַׁמְּרִים הַבְלֵי־שָׁוְא Jon 2:9 those paying regard to false vanities (cf. Qal ψ 31:7).",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        },
+        {
+          "text": "Impf. 1 s. וָאֶשְׁתַּמֵּר מֵעֲוֹנִי ψ 18:24 I kept myself from, etc. = 2 S 22:24 (vb. cohort.); 3 ms. וְיִשְׁתַּמֵּר חֻקּוֹת עָמְרִי Mi 6:16, but read וְתִשְׁמֹר thou keepest, observest, We Now GASm.",
+          "depth": 1,
+          "grammar": {},
+          "notes": ""
+        }
+      ],
+      "refs": [],
+      "etymology": "",
+      "derivatives": [],
+      "notes": ""
+    }
+  ]
+}
