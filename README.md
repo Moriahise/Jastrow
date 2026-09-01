@@ -1,2 +1,0 @@
-# Jastrow
-Dictonary
