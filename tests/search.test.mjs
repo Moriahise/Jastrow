@@ -44,3 +44,33 @@ test('Published code and stylesheet URLs share the offline cache revision',()=>{
   assert(refs.every(m=>m[1]===revision),file+' module cache revision');
  }
 });
+
+const strongLexicon="Strong's Hebrew & Aramaic";
+test('All 8,674 Strong Hebrew/Aramaic identifiers are searchable offline',()=>{
+ const strong=rows.filter(r=>r.lex===strongLexicon);
+ assert.equal(strong.length,8674);assert.equal(new Set(strong.map(r=>r.strongId)).size,8674);
+ for(const id of ['H1','H430','H3477','H8674']){
+  const result=searchIndex(rows,id,{filter:strongLexicon,exact:true});
+  assert.equal(result.total,1,id);assert.equal(result.results[0].strongId,id);
+ }
+});
+test('Strong numbers accept padding, bare numbers and the Strong prefix',()=>{
+ for(const query of ['H0430','430',"Strong's H430"]){
+  const result=searchIndex(rows,query,{filter:strongLexicon,exact:true});
+  assert.equal(result.total,1,query);assert.equal(result.results[0].strongId,'H430');
+ }
+ const result=searchIndex(rows,'H1',{filter:strongLexicon,exact:true});
+ assert(!result.results.some(r=>r.strongId==='H10'));
+});
+test('Strong entries retain outlines, notes, links and exact source attribution',()=>{
+ const row=rows.find(r=>r.lex===strongLexicon&&r.strongId==='H3477');
+ const data=JSON.parse(gunzipSync(readFileSync(new URL('../web/data/entries/'+row.id[0]+'.json.gz',import.meta.url))))[row.id].raw;
+ assert.equal(data.content.senses[0].senses.length,5);
+ assert.equal(data.content.senses[0].senses[0].label,'1a');
+ assert(data.etymology.includes('data-ref="Strong H3474"'));
+ assert(data.strong_definition.includes('straight'));assert(data.translation.includes('Jasher'));
+ assert(data.source_entry_xml.includes('n="3477"'));
+ assert.equal(data.parent_lexicon_details.source_url,'https://github.com/openscriptures/strongs');
+ assert.equal(data.parent_lexicon_details.attribution,'Based on the work of Larry Pierce at the Online Bible');
+ assert.equal(data.parent_lexicon_details.attribution_url,'http://www.blueletterbible.org/contact/contact_gen.cfm');
+});

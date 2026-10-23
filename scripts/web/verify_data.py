@@ -23,11 +23,18 @@ for name in ['sefaria_cache/sefaria_lexicon_cache.json','sefaria_cache/_back_sef
  for data in [json.loads(original[name]),json.loads((ROOT/name).read_text('utf-8-sig'))]:
   for word,v in data.items():
    for raw in v.get('data',[]):assert json.dumps(raw,ensure_ascii=False,sort_keys=True,separators=(',',':')) in raws,(name,word)
+# Verify every imported Strong's record against the same pinned XML projection.
+from import_strongs import load_strongs,LEXICON as STRONGS_LEXICON
+strongs_path=ROOT/'.build/data-upstream/strongs/StrongHebrewG.xml'
+expected_strongs={r['strong_id']:r for r in load_strongs(strongs_path)}
+actual_strongs={e['raw']['strong_id']:e['raw'] for e in entries.values() if e['lexicon']==STRONGS_LEXICON}
+assert actual_strongs==expected_strongs and len(actual_strongs)==8674
+assert gzip.decompress((OUT/'data/strongs-source.xml.gz').read_bytes())==strongs_path.read_bytes()
 assert len(read('data/sources.json.gz'))==115
 history=read('data/history.json.gz');assert len(history['queries'])==meta['history']
 # Every imported file URL must resolve inside the published root.
 for f in manifest:assert (OUT/f['url']).is_file()
-report={'status':'PASS','original_files_byte_identical':len(original),'original_bytes':sum(map(len,original.values())),'jastrow_snapshot_records_verified':len(imported),'search_rows':len(index),'klein_definition_records':meta['lexicons']['Klein Dictionary'],'klein_catalog_headwords':meta['klein_catalog'],'klein_pending_definition_records':meta['klein_pending'],'source_files':meta['source_files'],'history_records':meta['history'],'all_cache_payloads_preserved_from_upload_and_repository':True}
+report={'status':'PASS','original_files_byte_identical':len(original),'original_bytes':sum(map(len,original.values())),'jastrow_snapshot_records_verified':len(imported),'strongs_records_verified':len(actual_strongs),'strongs_original_xml_byte_identical':True,'search_rows':len(index),'klein_definition_records':meta['lexicons']['Klein Dictionary'],'klein_catalog_headwords':meta['klein_catalog'],'klein_pending_definition_records':meta['klein_pending'],'source_files':meta['source_files'],'history_records':meta['history'],'all_cache_payloads_preserved_from_upload_and_repository':True}
 (OUT/'data/verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2));print(json.dumps(report,ensure_ascii=False,indent=2))
 # Version code and styles together, including the search worker's imports.
 # Normalise a previous generated suffix first so repeat verification is idempotent.

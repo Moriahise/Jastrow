@@ -218,5 +218,10 @@
     "url": "https://www.sefaria.org/api/words/completion/%D7%93/Klein%20Dictionary?limit=50000",
     "sha256": "757baef99bc5c7eeeca7ebf8744f01029fee3c6c5f5f1a06b2f0890c79afd0cd",
     "bytes": 28808
+  },
+  "strongs/StrongHebrewG.xml": {
+    "url": "https://raw.githubusercontent.com/openscriptures/strongs/0acd2f251c2d35ff8db2dece4e0593979d3ac223/hebrew/StrongHebrewG.xml",
+    "sha256": "1f9659ea208f4c498843a0280dacb1448627c33ca77712642d8705793ab66061",
+    "bytes": 6436400
   }
 }

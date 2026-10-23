@@ -10,23 +10,28 @@ export function hebrewBaseForms(query){
  }
  return forms;
 }
+export function strongNumber(query){
+ const m=normalize(query).match(/^(?:(?:strongs?\s*)?h\s*|(?:strongs?\s*)?)(0*[1-9]\d*)$/i);
+ return m?'H'+String(Number(m[1])):null;
+}
 export function searchIndex(rows,query,{filter='all',exact=false,offset=0,limit=40}={}){
- const q=normalize(query);if(!q)return {results:[],total:0};const words=q.split(' '),out=[],forms=exact?[]:hebrewBaseForms(q);
+ const q=normalize(query);if(!q)return {results:[],total:0};const words=q.split(' '),out=[],forms=exact?[]:hebrewBaseForms(q),strong=strongNumber(q);
  for(const r of rows){
   if(filter==='BDB'&&!r.lex.startsWith('BDB'))continue;
   if(filter==='local'&&!['local','user','translation','api','history','editorial'].includes(r.kind))continue;
   if(!['all','BDB','local'].includes(filter)&&r.lex!==filter)continue;
   const aliases=r.aliases||[normalize(r.hw)],hw=normalize(r.hw),direct=aliases.includes(q);
-  if(exact&&hw!==q)continue;
-  let score=direct?(hw===q?0:1):99,base;
-  if(!exact&&!direct){
+  const numberMatch=strong&&r.strongId===strong;
+  if(exact&&hw!==q&&!numberMatch)continue;
+  let score=numberMatch?0:direct?(hw===q?0:1):99,base;
+  if(!exact&&!direct&&!numberMatch){
    base=forms.find(f=>hw===f.form||aliases.includes(f.form));
    if(base)score=2+base.prefix.length/10;
    else if(aliases.some(a=>a.startsWith(q)))score=5;
    else if(aliases.some(a=>a.includes(q)))score=9;
    else if(words.every(w=>(r.text||'').includes(w)))score=20;
   }
-  if(score===99)continue;if(r.kind==='catalog')score+=.5;else if(r.lex==='Jastrow Dictionary')score-=.2;
+  if(score===99)continue;if(r.kind==='catalog')score+=.5;else if(r.lex==='Jastrow Dictionary')score-=.2;else if(numberMatch&&r.lex==="Strong's Hebrew & Aramaic")score-=.1;
   out.push({...r,score,...(base?{matchType:'prefix',matchedForm:base.form,strippedPrefix:base.prefix}:{})});
  }
  out.sort((a,b)=>a.score-b.score||a.hw.localeCompare(b.hw,'he')||a.id.localeCompare(b.id));

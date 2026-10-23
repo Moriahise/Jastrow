@@ -104,6 +104,15 @@ for p in sorted(UP.glob('*.json')):
       return [dict(**({'definition':s['def']} if 'def' in s else {}),**({'grammar':s['gram']} if 'gram' in s else {}),**({'senses':convert(s['senses'])} if s.get('senses') else {})) for s in senses]
      e={'headword':e['hw'],'rid':e['rid'],'parent_lexicon':'Jastrow Dictionary','content':{'senses':convert(e.get('senses',[]))},'refs':e.get('refs',[]),'prev_hw':e.get('prev'),'next_hw':e.get('next'),'upstream_original':e,'parent_lexicon_details':{'attribution':'Marcus Jastrow (1903); digitized by Sefaria','source_url':'https://jastrow.us/data/','license':'Public Domain'}}
     add(e,e.get('headword',e.get('hw')),p.name)
+# Complete Hebrew/Aramaic Strong's corpus; keep the pinned XML byte-for-byte too.
+from import_strongs import load_strongs,LEXICON as STRONGS_LEXICON,COMMIT as STRONGS_COMMIT
+strongs_path=UP/'strongs/StrongHebrewG.xml'
+for raw in load_strongs(strongs_path):
+ key=add(raw,raw['headword'],'Open Scriptures: '+STRONGS_COMMIT+' / hebrew/StrongHebrewG.xml')
+ for alias in [raw['strong_id'],raw['strong_number'],'H'+raw['strong_number'].zfill(4)]:
+  if alias not in entries[key]['aliases']:entries[key]['aliases'].append(alias)
+strongs_blob=strongs_path.read_bytes()
+(OUT/'data/strongs-source.xml.gz').write_bytes(gzip.compress(strongs_blob,mtime=0))
 # Durable centrally collected Klein records supplement the same independent website.
 p=ROOT/'data/klein-collected.json.gz'
 klein_collection={}
@@ -123,19 +132,19 @@ index=[];buckets=collections.defaultdict(dict);counts=collections.Counter()
 def alltext(x):
  if isinstance(x,str):return plain(x)
  if isinstance(x,list):return ' '.join(alltext(v) for v in x)
- if isinstance(x,dict):return ' '.join(alltext(v) for k,v in x.items() if k not in ['parent_lexicon_details','origins','upstream_original'])
+ if isinstance(x,dict):return ' '.join(alltext(v) for k,v in x.items() if k not in ['parent_lexicon_details','origins','upstream_original','source_entry_xml'])
  return ''
 for key,e in entries.items():
  r=e['raw'];hw=r.get('headword','');lex=r.get('parent_lexicon',r.get('lexicon','Weitere'));e['lexicon']=lex;e['headword']=hw;counts[lex]+=int(e['kind']!='catalog')
  text=alltext(r);a=list(dict.fromkeys([norm(hw)]+[norm(x) for x in e['aliases'] if norm(x)])); preview=plain((r.get('content',{}).get('senses') or [{}])[0].get('definition','')) if isinstance(r.get('content'),dict) else ''; preview=preview or plain(' · '.join(x.get('de') or x.get('en') or '' for m in r.get('mappings',[]) for x in m.get('meanings',[])))[:180] or plain(' · '.join(x.get('de') or x.get('translation') or x.get('en') or x.get('text','') for x in r.get('items',[])))[:180]
- index.append({'id':key,'hw':hw,'lex':lex,'kind':e['kind'],'aliases':a,'text':' '.join(dict.fromkeys(norm(text).split())),'preview':preview[:180],'pending':e['kind']=='catalog'});buckets[key[:1]][key]=e
+ index.append({'id':key,'hw':hw,'lex':lex,'kind':e['kind'],'aliases':a,'text':' '.join(dict.fromkeys(norm(text).split())),'preview':preview[:180],'pending':e['kind']=='catalog',**({'strongId':'H'+str(int(r['strong_number']))} if str(r.get('strong_number','')).isdigit() else {})});buckets[key[:1]][key]=e
 for bucket,rows in buckets.items():pack(f'data/entries/{bucket}.json.gz',rows)
 pack('data/index.json.gz',index);pack('data/sources.json.gz',sources);pack('data/archive.json.gz',manifest)
 # Inverted full-corpus index: all token occurrences, no arbitrary truncation.
 byletter=collections.defaultdict(dict)
 for w,byfile in postings.items():byletter[str(ord(w[0]))][w]=[[sid,lns] for sid,lns in byfile.items()]
 for letter,words in byletter.items():pack(f'data/corpus/{letter}.json.gz',words)
-meta={'schema':1,'version':'2026-10-23.1','entries':len(entries),'lexicons':dict(counts),'source_files':len(sources),'source_words':len(postings),'original_files':len(manifest),'original_bytes':sum(v['bytes'] for v in manifest),'history':len(history.get('queries',[])),'klein_catalog':len(klein_catalog),'klein_collection':{k:v for k,v in klein_collection.items() if k not in ['entries','completed','failures']},'klein_pending':sum(e['kind']=='catalog' for e in entries.values()),'archive_sha256':'7b2f6c2abcd9ea16917de5b62c27dddaf90898d17ce95eea352a8c3d51414f86','complete_lexicons':['Jastrow mirror snapshot (32,512 records)'] if (UP/'jastrow-manifest.txt').exists() and not json.loads((UP/'jastrow-manifest.txt').read_text()).get('missing_rids') else []}
+meta={'schema':1,'version':'2026-10-23.1','entries':len(entries),'lexicons':dict(counts),'source_files':len(sources),'source_words':len(postings),'original_files':len(manifest),'original_bytes':sum(v['bytes'] for v in manifest),'history':len(history.get('queries',[])),'strongs':{'entries':8674,'source_commit':STRONGS_COMMIT,'source_sha256':hashlib.sha256(strongs_blob).hexdigest(),'source_url':'https://github.com/openscriptures/strongs','download':'data/strongs-source.xml.gz'},'klein_catalog':len(klein_catalog),'klein_collection':{k:v for k,v in klein_collection.items() if k not in ['entries','completed','failures']},'klein_pending':sum(e['kind']=='catalog' for e in entries.values()),'archive_sha256':'7b2f6c2abcd9ea16917de5b62c27dddaf90898d17ce95eea352a8c3d51414f86','complete_lexicons':["Strong's Hebrew & Aramaic (8,674 records)"]+(['Jastrow mirror snapshot (32,512 records)'] if (UP/'jastrow-manifest.txt').exists() and not json.loads((UP/'jastrow-manifest.txt').read_text()).get('missing_rids') else [])}
 (OUT/'data/meta.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2))
 # File listing for optional offline installation and integrity checks.
 assets=[str(p.relative_to(OUT)) for p in OUT.rglob('*') if p.is_file() and p.name!='offline-files.json']
