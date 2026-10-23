@@ -1,15 +1,33 @@
 export const normalize=s=>String(s??'').normalize('NFC').replace(/[\u0591-\u05c7]/g,'').replace(/[^\u05d0-\u05ea\p{L}\p{N}\s]/gu,'').toLocaleLowerCase().replace(/\s+/g,' ').trim();
 export const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// Prefix removal proposes attested dictionary forms, never a new lexical entry.
+export function hebrewBaseForms(query){
+ const q=normalize(query);if(!/^[א-ת]+$/.test(q))return [];
+ const forms=[];
+ for(let length=1;length<=3&&q.length-length>=3;length++){
+  const prefix=q.slice(0,length);
+  if(/^(?:ו)?(?:ש)?(?:[בכלמ]|ה)?$/.test(prefix))forms.push({form:q.slice(length),prefix});
+ }
+ return forms;
+}
 export function searchIndex(rows,query,{filter='all',exact=false,offset=0,limit=40}={}){
- const q=normalize(query);if(!q)return {results:[],total:0};const heb=/[א-ת]/.test(q),words=q.split(' '),out=[];
+ const q=normalize(query);if(!q)return {results:[],total:0};const words=q.split(' '),out=[],forms=exact?[]:hebrewBaseForms(q);
  for(const r of rows){
   if(filter==='BDB'&&!r.lex.startsWith('BDB'))continue;
   if(filter==='local'&&!['local','user','translation','api','history','editorial'].includes(r.kind))continue;
   if(!['all','BDB','local'].includes(filter)&&r.lex!==filter)continue;
-  const aliases=r.aliases||[normalize(r.hw)];const direct=aliases.includes(q),hw=normalize(r.hw);if(exact&&hw!==q)continue;let score=direct?(hw===q?0:11):99;
-  if(!exact&&!direct){if(aliases.some(a=>a.startsWith(q)))score=5;else if(aliases.some(a=>a.includes(q)))score=9;else if(words.every(w=>(r.text||'').includes(w)))score=20;}
+  const aliases=r.aliases||[normalize(r.hw)],hw=normalize(r.hw),direct=aliases.includes(q);
+  if(exact&&hw!==q)continue;
+  let score=direct?(hw===q?0:1):99,base;
+  if(!exact&&!direct){
+   base=forms.find(f=>hw===f.form||aliases.includes(f.form));
+   if(base)score=2+base.prefix.length/10;
+   else if(aliases.some(a=>a.startsWith(q)))score=5;
+   else if(aliases.some(a=>a.includes(q)))score=9;
+   else if(words.every(w=>(r.text||'').includes(w)))score=20;
+  }
   if(score===99)continue;if(r.kind==='catalog')score+=.5;else if(r.lex==='Jastrow Dictionary')score-=.2;
-  out.push({...r,score});
+  out.push({...r,score,...(base?{matchType:'prefix',matchedForm:base.form,strippedPrefix:base.prefix}:{})});
  }
  out.sort((a,b)=>a.score-b.score||a.hw.localeCompare(b.hw,'he')||a.id.localeCompare(b.id));
  return {results:out.slice(offset,offset+limit),total:out.length};
