@@ -34,12 +34,12 @@ test('Prefix candidates preserve exact entries and do not stem English or short 
  assert.equal(result.results[1].matchType,'prefix');
 });
 
-test('Published module URLs share the offline cache revision',()=>{
+test('Published code and stylesheet URLs share the offline cache revision',()=>{
  const meta=JSON.parse(readFileSync(new URL('../web/data/meta.json',import.meta.url)));
  const revision=meta.cache_name.split('-').at(-1);
  for(const file of ['index.html','app.mjs','search-worker.mjs','sw.js']){
   const code=readFileSync(new URL('../web/'+file,import.meta.url),'utf8');
-  const refs=[...code.matchAll(/[\"'](?:\.\/)?[\w-]+\.mjs(?:\?build=([0-9a-f]{16}))?[\"']/g)];
+  const refs=[...code.matchAll(/[\"'](?:\.\/)?[\w-]+\.(?:mjs|css)(?:\?build=([0-9a-f]{16}))?[\"']/g)];
   assert(refs.length>0,file);
   assert(refs.every(m=>m[1]===revision),file+' module cache revision');
  }

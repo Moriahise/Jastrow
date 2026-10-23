@@ -29,12 +29,12 @@ history=read('data/history.json.gz');assert len(history['queries'])==meta['histo
 for f in manifest:assert (OUT/f['url']).is_file()
 report={'status':'PASS','original_files_byte_identical':len(original),'original_bytes':sum(map(len,original.values())),'jastrow_snapshot_records_verified':len(imported),'search_rows':len(index),'klein_definition_records':meta['lexicons']['Klein Dictionary'],'klein_catalog_headwords':meta['klein_catalog'],'klein_pending_definition_records':meta['klein_pending'],'source_files':meta['source_files'],'history_records':meta['history'],'all_cache_payloads_preserved_from_upload_and_repository':True}
 (OUT/'data/verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2));print(json.dumps(report,ensure_ascii=False,indent=2))
-# Version every module reference together, including the search worker's imports.
+# Version code and styles together, including the search worker's imports.
 # Normalise a previous generated suffix first so repeat verification is idempotent.
 import re
 module_files=[*OUT.glob('*.mjs'),OUT/'index.html',OUT/'sw.js']
 for p in module_files:
- p.write_text(re.sub(r'(\.mjs)\?build=[0-9a-f]{16}',r'\1',p.read_text()))
+ p.write_text(re.sub(r'(\.(?:mjs|css))\?build=[0-9a-f]{16}',r'\1',p.read_text()))
 # A changed data/code snapshot gets a new offline cache, preventing stale data on updates.
 fingerprint=hashlib.sha256()
 for p in sorted(OUT.rglob('*')):
@@ -43,7 +43,7 @@ for p in sorted(OUT.rglob('*')):
 revision=fingerprint.hexdigest()[:16]
 cache_name='beit-hamillon-jastrow-'+revision
 for p in module_files:
- p.write_text(re.sub(r"(['\"])((?:\./)?[\w-]+\.mjs)\1",lambda m:m[1]+m[2]+'?build='+revision+m[1],p.read_text()))
+ p.write_text(re.sub(r"(['\"])((?:\./)?[\w-]+\.(?:mjs|css))\1",lambda m:m[1]+m[2]+'?build='+revision+m[1],p.read_text()))
 meta['cache_name']=cache_name;(OUT/'data/meta.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2))
 import re
 p=OUT/'sw.js';p.write_text(re.sub(r"const VERSION='[^']+'","const VERSION='"+cache_name+"'",p.read_text()))
