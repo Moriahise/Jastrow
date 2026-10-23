@@ -104,6 +104,12 @@ for p in sorted(UP.glob('*.json')):
       return [dict(**({'definition':s['def']} if 'def' in s else {}),**({'grammar':s['gram']} if 'gram' in s else {}),**({'senses':convert(s['senses'])} if s.get('senses') else {})) for s in senses]
      e={'headword':e['hw'],'rid':e['rid'],'parent_lexicon':'Jastrow Dictionary','content':{'senses':convert(e.get('senses',[]))},'refs':e.get('refs',[]),'prev_hw':e.get('prev'),'next_hw':e.get('next'),'upstream_original':e,'parent_lexicon_details':{'attribution':'Marcus Jastrow (1903); digitized by Sefaria','source_url':'https://jastrow.us/data/','license':'Public Domain'}}
     add(e,e.get('headword',e.get('hw')),p.name)
+# Durable centrally collected Klein records supplement the same independent website.
+p=ROOT/'data/klein-collected.json.gz'
+klein_collection={}
+if p.exists():
+ klein_collection=json.loads(gzip.decompress(p.read_bytes()))
+ for raw in klein_collection.get('entries',[]):add(raw,raw.get('headword',''),'GitHub Klein collection: '+klein_collection.get('updated',''))
 # Full Klein headword catalog, with explicit pending definitions.
 klein_catalog={}
 for p in sorted((UP/'klein-catalog').glob('*.json')):
@@ -129,7 +135,7 @@ pack('data/index.json.gz',index);pack('data/sources.json.gz',sources);pack('data
 byletter=collections.defaultdict(dict)
 for w,byfile in postings.items():byletter[str(ord(w[0]))][w]=[[sid,lns] for sid,lns in byfile.items()]
 for letter,words in byletter.items():pack(f'data/corpus/{letter}.json.gz',words)
-meta={'schema':1,'version':'2026-10-23.1','entries':len(entries),'lexicons':dict(counts),'source_files':len(sources),'source_words':len(postings),'original_files':len(manifest),'original_bytes':sum(v['bytes'] for v in manifest),'history':len(history.get('queries',[])),'klein_catalog':len(klein_catalog),'klein_pending':sum(e['kind']=='catalog' for e in entries.values()),'archive_sha256':'7b2f6c2abcd9ea16917de5b62c27dddaf90898d17ce95eea352a8c3d51414f86','complete_lexicons':['Jastrow mirror snapshot (32,512 records)'] if (UP/'jastrow-manifest.txt').exists() and not json.loads((UP/'jastrow-manifest.txt').read_text()).get('missing_rids') else []}
+meta={'schema':1,'version':'2026-10-23.1','entries':len(entries),'lexicons':dict(counts),'source_files':len(sources),'source_words':len(postings),'original_files':len(manifest),'original_bytes':sum(v['bytes'] for v in manifest),'history':len(history.get('queries',[])),'klein_catalog':len(klein_catalog),'klein_collection':{k:v for k,v in klein_collection.items() if k not in ['entries','completed','failures']},'klein_pending':sum(e['kind']=='catalog' for e in entries.values()),'archive_sha256':'7b2f6c2abcd9ea16917de5b62c27dddaf90898d17ce95eea352a8c3d51414f86','complete_lexicons':['Jastrow mirror snapshot (32,512 records)'] if (UP/'jastrow-manifest.txt').exists() and not json.loads((UP/'jastrow-manifest.txt').read_text()).get('missing_rids') else []}
 (OUT/'data/meta.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2))
 # File listing for optional offline installation and integrity checks.
 assets=[str(p.relative_to(OUT)) for p in OUT.rglob('*') if p.is_file() and p.name!='offline-files.json']
