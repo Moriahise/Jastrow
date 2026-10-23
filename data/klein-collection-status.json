@@ -2,9 +2,9 @@
   "schema": 1,
   "lexicon": "Klein Dictionary",
   "catalog_count": 26922,
-  "completed_count": 21564,
-  "remaining_count": 5358,
+  "completed_count": 21814,
+  "remaining_count": 5108,
   "complete": false,
-  "updated": "2026-10-23T22:34:03Z",
+  "updated": "2026-10-23T22:36:11Z",
   "failed_count": 8
 }
