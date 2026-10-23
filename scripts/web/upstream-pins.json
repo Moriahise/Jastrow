@@ -1,0 +1,222 @@
+{
+  "jastrow-M.json": {
+    "url": "https://jastrow.us/data/entries/M.json",
+    "sha256": "dcef78aa8a3e95a0761256cde73cdefe09296016d0640e0796072aa2a94eb6ad",
+    "bytes": 3192682
+  },
+  "jastrow-R.json": {
+    "url": "https://jastrow.us/data/entries/R.json",
+    "sha256": "8d151f0e52d250e2e98d3c6ddde090bd6dc22879cf7b7c78a288de8fdc75f71a",
+    "bytes": 1026498
+  },
+  "jastrow-E.json": {
+    "url": "https://jastrow.us/data/entries/E.json",
+    "sha256": "f86ec14c7b80fb1f71de1a5c4c1189d56ac7f694d79d539e9a21093a4b73038b",
+    "bytes": 933409
+  },
+  "jastrow-I.json": {
+    "url": "https://jastrow.us/data/entries/I.json",
+    "sha256": "d90d5a43ab19e30757ab3882f28727fb82b251429a329a988f780748b0966629",
+    "bytes": 944593
+  },
+  "jastrow-C.json": {
+    "url": "https://jastrow.us/data/entries/C.json",
+    "sha256": "c62a2779e2c1a85bf1ada2711ec8ce8f1c3b3649666e4396352e01801b2d1b5d",
+    "bytes": 1630970
+  },
+  "jastrow-O.json": {
+    "url": "https://jastrow.us/data/entries/O.json",
+    "sha256": "d4583b04e4b624e05ecb7a7c8b1384116045b58c4d626aed9cc7b7930b8a5e38",
+    "bytes": 1896243
+  },
+  "jastrow-D.json": {
+    "url": "https://jastrow.us/data/entries/D.json",
+    "sha256": "7036d956839f537ab0ab7cf5065d51931ea575342204a42fb19431b8407173fc",
+    "bytes": 1170610
+  },
+  "jastrow-G.json": {
+    "url": "https://jastrow.us/data/entries/G.json",
+    "sha256": "e5646b8d12025c0ba8591956f2a14fe75aa26e4d14e81eac5a66babd8cf7e171",
+    "bytes": 834361
+  },
+  "jastrow-S.json": {
+    "url": "https://jastrow.us/data/entries/S.json",
+    "sha256": "105268c680f9803b17d76424ddd0492e8323e008529001eab48f4025cd290462",
+    "bytes": 2650027
+  },
+  "jastrow-U.json": {
+    "url": "https://jastrow.us/data/entries/U.json",
+    "sha256": "4f9e522c0e8cdb9f62e0cdda7ad37f02c480e6f9e18904dcfa2fbafd73c3c1fe",
+    "bytes": 2854596
+  },
+  "jastrow-F.json": {
+    "url": "https://jastrow.us/data/entries/F.json",
+    "sha256": "568e43f69e9f90942a35fc2b7cb9b9e920b41137f234ca9b6b87a5eac9a3ff38",
+    "bytes": 116502
+  },
+  "jastrow-K.json": {
+    "url": "https://jastrow.us/data/entries/K.json",
+    "sha256": "8c3e6e278507bd805caa6b706e1fcf46fc37f63d08f346703c4dbd51192faaa5",
+    "bytes": 1773210
+  },
+  "jastrow-Q.json": {
+    "url": "https://jastrow.us/data/entries/Q.json",
+    "sha256": "3a4ee07ad10de0db6fc6fa88133c5a8d2584bdd11f5d3b1971cf70b274c977d5",
+    "bytes": 2626461
+  },
+  "jastrow-H.json": {
+    "url": "https://jastrow.us/data/entries/H.json",
+    "sha256": "45a2e08d260dcaabe277b660f1ffcf60b25869a111bb02448021f7ff5767c471",
+    "bytes": 2154758
+  },
+  "jastrow-B.json": {
+    "url": "https://jastrow.us/data/entries/B.json",
+    "sha256": "e97265491a72a0690cf2776cc574e2633225afad0d16ca72f9cb7cd2fd34d2d1",
+    "bytes": 1465951
+  },
+  "jastrow-T.json": {
+    "url": "https://jastrow.us/data/entries/T.json",
+    "sha256": "3d14d9702a924a98d41007d00d8c659720cb6a08c0467788f1e22d33457103e6",
+    "bytes": 1476872
+  },
+  "jastrow-L.json": {
+    "url": "https://jastrow.us/data/entries/L.json",
+    "sha256": "2a5a6b8e5541633bcd42a27f4ddb62e32c45d9c690b696c88ab7a109b99b4ed2",
+    "bytes": 752217
+  },
+  "jastrow-J.json": {
+    "url": "https://jastrow.us/data/entries/J.json",
+    "sha256": "572b8429361c0d0601c2df2fc48c0ff78349776db53163d988c14fbb1974088b",
+    "bytes": 1011308
+  },
+  "jastrow-A.json": {
+    "url": "https://jastrow.us/data/entries/A.json",
+    "sha256": "29b052e70180cbc5ecb9ab632652ed3538aa5b8f9629d537b1e8c20cf553a336",
+    "bytes": 2909058
+  },
+  "jastrow-P.json": {
+    "url": "https://jastrow.us/data/entries/P.json",
+    "sha256": "cf410ba4503aac67f7068260d35c638e34cf8a122fc27ace1c82959827ea81e6",
+    "bytes": 2039898
+  },
+  "jastrow-N.json": {
+    "url": "https://jastrow.us/data/entries/N.json",
+    "sha256": "c7535cddd2b6557a81e3c14916fbf19706b3afa05635d6be2557bc0e5153b2bd",
+    "bytes": 1742704
+  },
+  "jastrow-V.json": {
+    "url": "https://jastrow.us/data/entries/V.json",
+    "sha256": "f581d9e4a9a4aa9031270460d1755f6e66f770db915d52b4503b97d904457766",
+    "bytes": 1373783
+  },
+  "klein-catalog/1506.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%A2/Klein%20Dictionary?limit=50000",
+    "sha256": "7e0b31fad6103664a7f615cd077d34f52197a98efdf5b51a6d99d728b04b9379",
+    "bytes": 33769
+  },
+  "klein-catalog/1504.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%A0/Klein%20Dictionary?limit=50000",
+    "sha256": "d79e1ee9924b4cff05629f85580aef73526b81cf3cd23a16367c422bca7f52e1",
+    "bytes": 39781
+  },
+  "klein-catalog/1513.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%A9/Klein%20Dictionary?limit=50000",
+    "sha256": "3ad88649ebedc94d28e691764e99f95aebb32fa50f8a2b3a8aac312bba29fb70",
+    "bytes": 60353
+  },
+  "klein-catalog/1505.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%A1/Klein%20Dictionary?limit=50000",
+    "sha256": "80ffc09f308b78fde9b616e36b03519dfaeba8357f5477c02072a64b1f3124ff",
+    "bytes": 40784
+  },
+  "klein-catalog/1511.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%A7/Klein%20Dictionary?limit=50000",
+    "sha256": "b1d7f4044b68c9728fc4c16859021f3dba76e7f0a89d69835469e2761569f068",
+    "bytes": 50094
+  },
+  "klein-catalog/1512.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%A8/Klein%20Dictionary?limit=50000",
+    "sha256": "ba51977d7adb69ffdaaa50ad1e39975b29e83594160820f01e9c4b1bff028855",
+    "bytes": 37554
+  },
+  "klein-catalog/1497.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%99/Klein%20Dictionary?limit=50000",
+    "sha256": "f773ad528161f99f54e34e1fb5b0b79b4e77bc5b3cd20b6d101c9a7b13dfec87",
+    "bytes": 19138
+  },
+  "klein-catalog/1508.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%A4/Klein%20Dictionary?limit=50000",
+    "sha256": "db4d5631bb7c0a9097ee8ab54d23171876bab7813e6d57d22bac92c8a6a48507",
+    "bytes": 63276
+  },
+  "klein-catalog/1488.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%90/Klein%20Dictionary?limit=50000",
+    "sha256": "db640c19b6a643f2156228b3836fdd0c1a64d6d6cdd7286ade5f0342a128a655",
+    "bytes": 91835
+  },
+  "klein-catalog/1494.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%96/Klein%20Dictionary?limit=50000",
+    "sha256": "6bcec8fdd34b21b33f57726501a925e01f7d377a6d9bc62c7aff0c64b33b8a65",
+    "bytes": 14578
+  },
+  "klein-catalog/1493.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%95/Klein%20Dictionary?limit=50000",
+    "sha256": "510ef419796e3d422a646210bb0ad7536f25eacd7e2b75550032aa4b555c589d",
+    "bytes": 5126
+  },
+  "klein-catalog/1502.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%9E/Klein%20Dictionary?limit=50000",
+    "sha256": "552c64218d287b959041711f0f4552c523f7310a210d763a6b4a0020075e6f54",
+    "bytes": 159519
+  },
+  "klein-catalog/1495.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%97/Klein%20Dictionary?limit=50000",
+    "sha256": "70b26932b375564d316b40e2a29ca2871ba6dc8226fedeeed2a7f04fb1cdfc24",
+    "bytes": 43808
+  },
+  "klein-catalog/1499.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%9B/Klein%20Dictionary?limit=50000",
+    "sha256": "c0040bcd0ff19f361657213623b776191cf3e9831d3c945bf1d3fb612abdc1da",
+    "bytes": 30191
+  },
+  "klein-catalog/1490.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%92/Klein%20Dictionary?limit=50000",
+    "sha256": "daeab7ee5fe03ffebd264bcff0cf499d5dcba09763e351eb5749e0ab2b1e7081",
+    "bytes": 35408
+  },
+  "klein-catalog/1496.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%98/Klein%20Dictionary?limit=50000",
+    "sha256": "2c634203ee6e6d528b33f90614b3ba4ca63a762c9c9c124544db82193997f325",
+    "bytes": 18640
+  },
+  "klein-catalog/1492.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%94/Klein%20Dictionary?limit=50000",
+    "sha256": "200843067f314e6d10e14ece343e34f928f4cab531548d10e7d6e2ae5a37eeef",
+    "bytes": 101029
+  },
+  "klein-catalog/1514.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%AA/Klein%20Dictionary?limit=50000",
+    "sha256": "762b18f56aae780b85b5faa38c130e8c494768381e3e58bafd856371dc4489d7",
+    "bytes": 47997
+  },
+  "klein-catalog/1500.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%9C/Klein%20Dictionary?limit=50000",
+    "sha256": "8c559855a467e89364b1d560da258712dfc6af4fe63afceea3700574439501ae",
+    "bytes": 22040
+  },
+  "klein-catalog/1510.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%A6/Klein%20Dictionary?limit=50000",
+    "sha256": "5d32f21249a0e68b247bbe6bd4f89e9d008f19965a2fd1cada17955155b81cdf",
+    "bytes": 21038
+  },
+  "klein-catalog/1489.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%91/Klein%20Dictionary?limit=50000",
+    "sha256": "356416e1da9e5ecafaab870fa41bc69e3c3e7288e2e5af352544a3887f906b0f",
+    "bytes": 37004
+  },
+  "klein-catalog/1491.json": {
+    "url": "https://www.sefaria.org/api/words/completion/%D7%93/Klein%20Dictionary?limit=50000",
+    "sha256": "757baef99bc5c7eeeca7ebf8744f01029fee3c6c5f5f1a06b2f0890c79afd0cd",
+    "bytes": 28808
+  }
+}

@@ -1,0 +1,6 @@
+.build/
+__pycache__/
+web/data/
+web/archive/
+web/audio_cache/
+web/offline-files.json
