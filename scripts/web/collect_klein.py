@@ -58,6 +58,7 @@ def checkpoint(push=False):
   subprocess.run(['git','add','data/klein-collected.json.gz','data/klein-collection-status.json'],cwd=ROOT,check=True)
   if subprocess.run(['git','diff','--cached','--quiet'],cwd=ROOT).returncode:
    subprocess.run(['git','commit','-m',f"Collect Klein dictionary: {len(heads&completed)}/{len(heads)} verified headwords"],cwd=ROOT,check=True)
+   subprocess.run(['git','pull','--rebase','origin','main'],cwd=ROOT,check=True)
    subprocess.run(['git','push','origin','HEAD:main'],cwd=ROOT,check=True)
 checkpoint(True)
 queue=sorted(heads-completed);queue=queue[:args.limit] if args.limit else queue;count=0;consecutive=0

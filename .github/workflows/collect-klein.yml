@@ -27,3 +27,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Collect and checkpoint original Klein definitions
         run: python -u scripts/web/collect_klein.py
+# Checkpoints rebase over concurrent website updates before pushing.
