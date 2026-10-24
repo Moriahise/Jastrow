@@ -223,5 +223,10 @@
     "url": "https://raw.githubusercontent.com/openscriptures/strongs/0acd2f251c2d35ff8db2dece4e0593979d3ac223/hebrew/StrongHebrewG.xml",
     "sha256": "1f9659ea208f4c498843a0280dacb1448627c33ca77712642d8705793ab66061",
     "bytes": 6436400
+  },
+  "source-library/catalog.json": {
+    "url": "https://raw.githubusercontent.com/Moriahise/Shiurim/9d44b04114d451422e14fb114584969f44216029/site/data/sefaria-library.json",
+    "sha256": "f347fecdc6f39a72da923a716a1ddf80ce9e9acdb354ee3fc4d5900f223ea191",
+    "bytes": 2988295
   }
 }

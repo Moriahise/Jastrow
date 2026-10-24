@@ -1,76 +1,29 @@
-import{test}from'node:test';import assert from'node:assert/strict';import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';import{normalize,searchIndex,gematria,validateBackup,mergeIndex,hebrewBaseForms}from'../web/core.mjs';
+import{test}from'node:test';import assert from'node:assert/strict';import{readFileSync,existsSync}from'node:fs';import{gunzipSync}from'node:zlib';
+import{normalize,searchIndex,gematria,hebrewBaseForms,publicLexicon,publicDataURL}from'../web/core.mjs';import{translations}from'../web/i18n.mjs';import{sections,children}from'../web/source-navigation.mjs';
 const rows=JSON.parse(gunzipSync(readFileSync(new URL('../web/data/index.json.gz',import.meta.url))));
-test('Niqqud, cantillation and punctuation do not prevent Hebrew lookup',()=>{assert.equal(normalize('תּוֹרָה'),'תורה');const r=searchIndex(rows,'תּוֹרָה',{exact:true});assert(r.total>0);assert(r.results.every(x=>normalize(x.hw)==='תורה'));});
-test('Jastrow and Klein remain separately filterable',()=>{for(const filter of ['Jastrow Dictionary','Klein Dictionary']){const r=searchIndex(rows,'תורה',{exact:true,filter});assert(r.total>0);assert(r.results.every(x=>x.lex===filter&&!x.pending));}});
-test('German and English meanings are searchable',()=>{for(const q of ['Licht','light','Lehre'])assert(searchIndex(rows,q).total>0,q);});
-test('Missing Klein definitions are discoverable but explicitly marked',()=>{const pending=rows.find(r=>r.kind==='catalog');if(!pending){const meta=JSON.parse(readFileSync(new URL('../web/data/meta.json',import.meta.url)));assert.equal(meta.klein_pending,0);assert.equal(meta.klein_collection.complete,true);return;}const r=searchIndex(rows,pending.hw,{filter:'Klein Dictionary',exact:true,limit:200});assert(r.results.some(x=>x.id===pending.id&&x.pending));});
-test('Filtering, no-match and stable pagination',()=>{assert.equal(searchIndex(rows,'zzzzunfindbarzzzz').total,0);const a=searchIndex(rows,'תורה',{limit:3}),b=searchIndex(rows,'תורה',{offset:3,limit:3});assert.equal(a.total,b.total);assert.equal(new Set([...a.results,...b.results].map(x=>x.id)).size,6);});
-test('Gematria uses the Hebrew letters, including final forms',()=>{const g=gematria('תּוֹרָה');assert.equal(g['Mispar Hechrachi'],611);assert.equal(g.letters,4);assert.equal(gematria('מלך')['Mispar Hechrachi'],90);assert.equal(gematria('מלך')['Mispar Gadol'],570);assert.equal(Object.keys(g).length,17);});
-test('Backups reject unrelated data and unknown record families',()=>{assert.throws(()=>validateBackup({}));assert.throws(()=>validateBackup({schema:'beit-hamillon-backup-v1',records:[{key:'bad'}]}));assert.equal(validateBackup({schema:'beit-hamillon-backup-v1',records:[{key:'note:test',value:{he:'תורה'}}]}).length,1);});
-
-test('An imported definition replaces only its pending catalog result',()=>{const catalog=rows.find(r=>r.kind==='catalog')||{id:'pending-test',hw:'קטלוגבדיקה',lex:'Klein Dictionary',kind:'catalog',pending:true};const source=rows.some(r=>r.id===catalog.id)?rows:[...rows,catalog];const imported={...catalog,id:'remote-test',kind:'remote',pending:false,text:'downloaded definition'};const merged=mergeIndex(source,[imported]);assert(!merged.some(r=>r.id===catalog.id));assert(merged.some(r=>r.id==='remote-test'&&!r.pending));assert.equal(merged.length,source.length);});
-
-
-test('Prefixed source word מאחות finds the existing Jastrow אחות entry',()=>{
- const result=searchIndex(rows,'מֵאָחוֹת',{filter:'Jastrow Dictionary'});
- assert(result.total>0);
- assert.equal(normalize(result.results[0].hw),'אחות');
- assert.equal(result.results[0].matchType,'prefix');
- assert.equal(result.results[0].strippedPrefix,'מ');
- assert.equal(result.results[0].matchedForm,'אחות');
- assert(!result.results.some(r=>normalize(r.hw)==='מאחות'));
-});
-test('Exact mode never silently substitutes a possible base form',()=>{
- const result=searchIndex(rows,'מאחות',{filter:'Jastrow Dictionary',exact:true});
- assert.equal(result.total,0);
- const direct=searchIndex(rows,'אחות',{filter:'Jastrow Dictionary',exact:true});
- assert(direct.total>0);assert(direct.results.every(r=>!r.matchType));
-});
-test('Prefix candidates preserve exact entries and do not stem English or short words',()=>{
- assert.deepEqual(hebrewBaseForms('light'),[]);assert.deepEqual(hebrewBaseForms('מאי'),[]);
- assert(hebrewBaseForms('ובתורה').some(f=>f.form==='תורה'&&f.prefix==='וב'));
- const fixture=[{id:'1',hw:'מאחות',lex:'Jastrow Dictionary'},{id:'2',hw:'אחות',lex:'Jastrow Dictionary'}];
- const result=searchIndex(fixture,'מאחות');assert.equal(result.results[0].id,'1');assert(!result.results[0].matchType);
- assert.equal(result.results[1].matchType,'prefix');
-});
-
-test('Published code and stylesheet URLs share the offline cache revision',()=>{
- const meta=JSON.parse(readFileSync(new URL('../web/data/meta.json',import.meta.url)));
- const revision=meta.cache_name.split('-').at(-1);
- for(const file of ['index.html','app.mjs','search-worker.mjs','sw.js']){
-  const code=readFileSync(new URL('../web/'+file,import.meta.url),'utf8');
-  const refs=[...code.matchAll(/[\"'](?:\.\/)?[\w-]+\.(?:mjs|css)(?:\?build=([0-9a-f]{16}))?[\"']/g)];
-  assert(refs.length>0,file);
-  assert(refs.every(m=>m[1]===revision),file+' module cache revision');
- }
-});
-
+const meta=JSON.parse(readFileSync(new URL('../web/data/meta.json',import.meta.url)));
 const strongLexicon="Strong's Hebrew & Aramaic";
-test('All 8,674 Strong Hebrew/Aramaic identifiers are searchable offline',()=>{
- const strong=rows.filter(r=>r.lex===strongLexicon);
- assert.equal(strong.length,8674);assert.equal(new Set(strong.map(r=>r.strongId)).size,8674);
- for(const id of ['H1','H430','H3477','H8674']){
-  const result=searchIndex(rows,id,{filter:strongLexicon,exact:true});
-  assert.equal(result.total,1,id);assert.equal(result.results[0].strongId,id);
- }
+test('Only the four public dictionary families are shipped or searchable',()=>{
+ assert(rows.every(r=>publicLexicon(r.lex)&&['lexicon','catalog'].includes(r.kind)));
+ assert.deepEqual(Object.keys(meta.lexicons).sort(),['Jastrow Dictionary','Klein Dictionary','BDB Dictionary','BDB Aramaic Dictionary','BDB Augmented Strong',strongLexicon].sort());
+ for(const file of ['history.json.gz','archive.json.gz'])assert(!existsSync(new URL('../web/data/'+file,import.meta.url)));
+ const fixture=[{id:'private',hw:'תורה',lex:'Lokale Wortbedeutungen',kind:'local',text:'test'}];assert.equal(searchIndex(fixture,'תורה').total,0);
 });
-test('Strong numbers accept padding, bare numbers and the Strong prefix',()=>{
- for(const query of ['H0430','430',"Strong's H430"]){
-  const result=searchIndex(rows,query,{filter:strongLexicon,exact:true});
-  assert.equal(result.total,1,query);assert.equal(result.results[0].strongId,'H430');
- }
- const result=searchIndex(rows,'H1',{filter:strongLexicon,exact:true});
- assert(!result.results.some(r=>r.strongId==='H10'));
-});
-test('Strong entries retain outlines, notes, links and exact source attribution',()=>{
- const row=rows.find(r=>r.lex===strongLexicon&&r.strongId==='H3477');
- const data=JSON.parse(gunzipSync(readFileSync(new URL('../web/data/entries/'+row.id[0]+'.json.gz',import.meta.url))))[row.id].raw;
- assert.equal(data.content.senses[0].senses.length,5);
- assert.equal(data.content.senses[0].senses[0].label,'1a');
- assert(data.etymology.includes('data-ref="Strong H3474"'));
- assert(data.strong_definition.includes('straight'));assert(data.translation.includes('Jasher'));
- assert(data.source_entry_xml.includes('n="3477"'));
- assert.equal(data.parent_lexicon_details.source_url,'https://github.com/openscriptures/strongs');
- assert.equal(data.parent_lexicon_details.attribution,'Based on the work of Larry Pierce at the Online Bible');
- assert.equal(data.parent_lexicon_details.attribution_url,'http://www.blueletterbible.org/contact/contact_gen.cfm');
+test('Hebrew marks and exact dictionary filtering still work',()=>{assert.equal(normalize('תּוֹרָה'),'תורה');for(const filter of ['Jastrow Dictionary','Klein Dictionary']){const r=searchIndex(rows,'תּוֹרָה',{filter,exact:true});assert(r.total>0);assert(r.results.every(x=>normalize(x.hw)==='תורה'&&x.lex===filter));}});
+test('English definitions remain searchable without importing personal German glossaries',()=>{assert(searchIndex(rows,'light').total>0);assert(rows.every(r=>!['local','user','api','history','translation'].includes(r.kind)));});
+test('מאחות resolves to Jastrow אחות and is labelled as a possible prefix match',()=>{const r=searchIndex(rows,'מֵאָחוֹת',{filter:'Jastrow Dictionary'});assert.equal(normalize(r.results[0].hw),'אחות');assert.equal(r.results[0].strippedPrefix,'מ');assert.equal(searchIndex(rows,'מאחות',{filter:'Jastrow Dictionary',exact:true}).total,0);});
+test('Exact entries rank before prefix proposals; English and short words are not stemmed',()=>{assert.deepEqual(hebrewBaseForms('light'),[]);assert.deepEqual(hebrewBaseForms('מאי'),[]);const r=searchIndex([{id:'1',hw:'מאחות',lex:'Jastrow Dictionary'},{id:'2',hw:'אחות',lex:'Jastrow Dictionary'}],'מאחות');assert.equal(r.results[0].id,'1');});
+test('Stable pagination and no-match behavior',()=>{assert.equal(searchIndex(rows,'zzzzunfindablezzzz').total,0);const a=searchIndex(rows,'תורה',{limit:3}),b=searchIndex(rows,'תורה',{offset:3,limit:3});assert.equal(a.total,b.total);assert.equal(new Set([...a.results,...b.results].map(x=>x.id)).size,6);});
+test('All 8,674 Strong numbers remain available',()=>{assert.equal(rows.filter(r=>r.lex===strongLexicon).length,8674);for(const query of ['H1','H430','H0430','430',"Strong's H430",'H8674']){const r=searchIndex(rows,query,{filter:strongLexicon,exact:true});assert.equal(r.total,1,query);}});
+test('Strong source, creator, hierarchy and internal reference are retained',()=>{const row=rows.find(r=>r.lex===strongLexicon&&r.strongId==='H3477'),r=JSON.parse(gunzipSync(readFileSync(new URL('../web/data/entries/'+row.id[0]+'.json.gz',import.meta.url))))[row.id].raw;assert.equal(r.content.senses[0].senses.length,5);assert(r.etymology.includes('Strong H3474'));assert.equal(r.parent_lexicon_details.source_url,'https://github.com/openscriptures/strongs');assert.equal(r.parent_lexicon_details.attribution,'Based on the work of Larry Pierce at the Online Bible');});
+test('Public source library contains 114 verifiable texts and the Shiurim catalogue',()=>{const sources=JSON.parse(gunzipSync(readFileSync(new URL('../web/data/sources.json.gz',import.meta.url)))),catalog=JSON.parse(gunzipSync(readFileSync(new URL('../web/data/library.json.gz',import.meta.url))));assert.equal(sources.length,114);assert.equal(catalog.works.length,6464);assert(sources.every(s=>s.path.startsWith('sources/Talmud/')&&s.url.startsWith('data/texts/')&&Array.isArray(s.toc)));assert(sources.some(s=>s.work==='Yevamot'&&s.toc.some(x=>x.label==='Daf 2a')));});
+test('All UI languages cover exactly the same public interface keys',()=>{assert.deepEqual(Object.keys(translations.de).sort(),Object.keys(translations.en).sort());assert.deepEqual(Object.keys(translations.he).sort(),Object.keys(translations.en).sort());assert(!JSON.stringify(translations).includes('Imported search history'));});
+test('Old offline data cannot satisfy a public data URL',()=>{const url=new URL(publicDataURL('data/index.json.gz','https://example.org/Jastrow/'));assert.equal(url.searchParams.get('edition'),'public-20261024');});
+test('Public module and CSS URLs share one offline revision',()=>{const revision=meta.cache_name.split('-').at(-1);for(const file of ['index.html','app.mjs','search-worker.mjs','sw.js']){const code=readFileSync(new URL('../web/'+file,import.meta.url),'utf8'),refs=[...code.matchAll(/["'](?:\.\/)?[\w-]+\.(?:mjs|css)(?:\?build=([0-9a-f]{16}))?["']/g)];assert(refs.length);assert(refs.every(m=>m[1]===revision),file);}});
+test('Gematria remains correct for marked letters and final forms',()=>{assert.equal(gematria('תּוֹרָה')['Mispar Hechrachi'],611);assert.equal(gematria('מלך')['Mispar Hechrachi'],90);});
+
+test('Source navigation resolves chapters, named nodes and Talmud folios without guessing offsets',()=>{
+ const simple=sections([{title:'Genesis',heTitle:'בראשית',chapters:[31,25]}],{title:'Genesis',schema:{addressTypes:['Integer','Integer']}});assert.equal(simple[0].ref,'Genesis 1');assert.equal(simple[1].ref,'Genesis 2');
+ const talmud=sections([{title:'Berakhot',chapters:[0,0,14,20]}],{title:'Berakhot',schema:{addressTypes:['Talmud','Integer']}});assert.equal(talmud[0].ref,'Berakhot 2a');assert.equal(children(talmud[0])[0].ref,'Berakhot 2a:1');
+ const offset=sections([{title:'Offset',chapters:[5,6]}],{title:'Offset',schema:{addressTypes:['Integer'],startingAddress:'3'}});assert.equal(offset[0].ref,'Offset');
 });

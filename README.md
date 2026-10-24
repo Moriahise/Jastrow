@@ -1,53 +1,47 @@
 # Beit haMillon · בית המילון
 
-Eigenständiges Studienwörterbuch für Hebräisch und Aramäisch: Jastrow, Klein, BDB, eigene Wortbedeutungen und Quelltexte. Weboberfläche auf Deutsch, Englisch und Hebräisch.
+Öffentliches Studienwörterbuch: **Jastrow, Klein, BDB und Strong’s**.
 
-## Webversion
+Online: https://moriahise.github.io/Jastrow/
 
-Veröffentlichung über GitHub Pages: https://moriahise.github.io/Jastrow/
+## Öffentlicher Bestand
 
-- Suche mit und ohne Niqqud sowie nach deutschen und englischen Bedeutungen.
-- Alle **32.512 Datensätze** des übernommenen Jastrow-Datenstands, zusätzlich die bisherigen Fassungen aus ZIP und Repository.
-- Klein: vorhandene Definitionen plus Verzeichnis von **26.922 Stichwörtern**; fehlende Definitionen sind gekennzeichnet. Ein fortsetzbarer Sammler übernimmt sie einmalig von Sefaria und speichert sie im Browser.
-- 115 Quelltexte mit vollständigem Wortstellenindex, Textleser und Nachschlagen per Wortklick.
-- DE/EN/HE-Ergänzungen, Notizen, Merkliste, Suchverlauf und Export/Import ohne Überschreiben abweichender Fassungen.
-- Offline-Speicherung der Wörterbücher oder des gesamten Bestands.
-- Alle 142 Originaldateien des hochgeladenen ZIP bleiben byteidentisch rekonstruierbar und einzeln herunterladbar. Bestehende Repository-Dateien bleiben erhalten.
+- Jastrow: alle 32.512 Datensätze des geprüften Spiegelbestands, zusätzlich erhaltene offizielle Wörterbuchfassungen.
+- Klein: zentral gesammelte Definitionen und nachvollziehbar markierte fehlende Stichwörter. Der Status in `data/klein-collection-status.json` ist maßgeblich; fehlende Definitionen werden nicht erfunden.
+- BDB: der vorhandene Teilbestand einschließlich BDB Aramaic und BDB Augmented Strong.
+- Strong’s: alle 8.674 hebräischen und aramäischen Einträge (H1–H8674), einschließlich Quellen- und Urheberangaben. Original: `openscriptures/strongs`, Commit `0acd2f251c2d35ff8db2dece4e0593979d3ac223`, `hebrew/StrongHebrewG.xml` (Public Domain laut XML-Werkmetadaten).
 
-**Sprachabdeckung:** Hebräische Stichwörter und englische Wörterbuchoriginale sind vorhanden. Deutsche Wortbedeutungen aus dem Altbestand wurden übernommen. Vollständige deutsche und hebräische Übersetzungen aller Jastrow-/Klein-Artikel liegen noch nicht vor. Fehlende Übersetzungen sind ausdrücklich markiert; eigene Ergänzungen stehen neben dem Original.
+Die Oberfläche ist auf Deutsch, Englisch und Hebräisch verfügbar. Wörterbuchartikel stehen im englischen Original; vollständige DE-/HE-Artikelübersetzungen sind nicht enthalten.
 
-**Persönliche Ergänzungen** werden in IndexedDB dieses Browsers gespeichert, nicht automatisch in GitHub oder zwischen Geräten synchronisiert. Regelmäßig unter „Bestand & Sicherung“ exportieren. Import auf einem anderen Gerät ist möglich. Der vollständige Klein-Abruf braucht eine geöffnete Seite und kann viele Stunden dauern. Einträge laufen nicht nach sieben Tagen ab.
+## Quellenbibliothek
 
-## Lokal starten / prüfen
+114 öffentliche Talmud-Quelltexte werden direkt mit der Website ausgeliefert. Auswahl nach Werk, Ausgabe und Daf; die Formatierung bleibt erhalten. Ein Mausklick oder Enter auf einem hebräischen Wort öffnet sofort das Wörterbuch, setzt die Suche auf alle vier Wörterbücher und berücksichtigt mögliche Vorsilben. „Zurück zur Lesestelle“ erhält Werk und Abschnitt.
 
-Python 3.10+ und Node.js 20+ genügen; keine Python-/npm-Pakete erforderlich.
+Der Katalog enthält außerdem die 6.464 Werke der Shiurim-Quellenbibliothek (pinnierter Datenstand). Zusätzliche Texte werden erst beim Öffnen über die öffentliche Sefaria-Text-API geladen und als **online** gekennzeichnet. Für die direkt gespeicherten Texte und Wörterbücher ist keine Sefaria-Verbindung erforderlich. Eingefügte Studientexte bleiben im Arbeitsspeicher des Browsers und werden nicht veröffentlicht.
+
+## Öffentlicher Lernraum
+
+Für alle Besucher stehen Themenwortschatz, Wort des Tages, Alphabetnavigation und ein Wörterbuchvergleich zur Verfügung. Es gibt keine persönlichen Sammlungen, Notizdatenbanken oder übernommenen Suchverläufe.
+
+## Bereinigung
+
+Die persönlichen Suchverläufe, lokalen Wortbedeutungen, Übersetzungsarchive, Audiodateien, PC-Konfigurationen und Desktop-Programme wurden aus dem aktuellen Repository- und Website-Bestand entfernt. Die frühere ZIP-Rekonstruktion wird nicht mehr verwendet. Der separate Wörterbuch-Zusatzbestand enthält ausschließlich originale Jastrow-, Klein- und BDB-Datensätze ohne frühere Suchanfragen/Aliase. Alte Website-Caches werden bei der Aktivierung dieser öffentlichen Version entfernt. Die Git-Versionsgeschichte bleibt unverändert.
+
+## Build und Prüfung
+
+Python 3.10+ und Node.js 20+, keine zusätzlichen Pakete:
 
 ```bash
 python scripts/web/prepare_inputs.py
 python scripts/web/build_data.py
 python scripts/web/verify_data.py
 node --test tests/search.test.mjs
-python -m http.server 8080 --directory web
 ```
 
-Dann http://localhost:8080 öffnen. `index.html` per Doppelklick ist wegen Browser-Sicherheitsregeln für Worker und lokale Datendateien nicht ausreichend. Die vorhandene PC-Anwendung (`start_manual.bat`) bleibt weiter nutzbar.
+Der Build startet mit einem leeren Daten-Ausgabeverzeichnis und erlaubt ausschließlich die vier Wörterbuchfamilien. Er prüft Jastrow-RIDs, sämtliche Strong’s-Datensätze, die unveränderte Strong’s-XML und alle 114 Quelltexte. `web/data/verification.json` dokumentiert den veröffentlichten Stand. Modul-, CSS- und Datenversionen verhindern, dass alte persönliche Inhalte aus früheren Caches erneut eingebunden werden.
 
-## Datenerhaltung und Veröffentlichung
+GitHub Actions veröffentlicht ausschließlich `web/`. Wörterbücher und gespeicherte Quelltexte lassen sich über „Bestand & Quellen“ offline auf dem jeweiligen Gerät speichern. Die einzige Browser-Präferenz ist die ausgewählte Oberflächensprache.
 
-`snapshots/upload-2026-10-23/manifest.json` hält jeden Originalpfad mit Größe und SHA-256 fest. Eine datensparsame Rekonstruktionsdatei erhält die Abweichungen gegenüber dem bestehenden Git-Commit, einschließlich ursprünglicher Zeilenenden. Der Build überprüft alle 142 Dateien vor der Veröffentlichung. Zusätzlich werden abweichende Wörterbuch- und Übersetzungsdatensätze des aktuellen Repository-Bestands übernommen. `web/data/verification.json` enthält den Prüfbericht.
+## Herkunft
 
-Der GitHub-Actions-Workflow prüft den Datenbestand und die Suche und veröffentlicht ausschließlich `web/`. PC-Konfiguration und Build-Werkzeuge gelangen nicht in das Pages-Artefakt. Die Originale im öffentlichen Repository sind weiterhin über GitHub zugänglich.
-
-Jastrow-Datenstand: Marcus Jastrow (1903), Public Domain; Digitalisierung von Sefaria, Datenübernahme über https://jastrow.us/data/. Klein: Ernest Klein, Carta (1987), Sefaria nennt CC-BY-NC. Herkunft und Originaldaten werden am Eintrag angezeigt. Für die übrigen übernommenen Quellen gelten deren jeweilige Rechte. Upstream-Dateien werden mit SHA-256 geprüft; geänderte Datenstände benötigen eine bewusste Aktualisierung der Prüfsummen in `scripts/web/upstream-pins.json`.
-
-## Vollständige Klein-Sammlung auf GitHub
-
-Der Workflow **Collect complete Klein dictionary** sammelt fehlende Definitionen direkt im Repository, höchstens zwei Anfragen pro Sekunde und mit drei gleichzeitigen Verbindungen. Alle 250 bearbeiteten Stichwörter wird ein komprimierter Zwischenstand committed. Ein Durchlauf dauert höchstens rund fünf Stunden. Unter Actions kann derselbe Workflow mit „Run workflow“ fortgesetzt werden; bereits geprüfte Stichwörter werden übersprungen. Nach Abschluss eines Durchlaufs baut und veröffentlicht der Pages-Workflow den erweiterten Bestand automatisch. Der Fortschritt steht in `data/klein-collection-status.json`; `complete: true` wird nur gesetzt, wenn jedes Stichwort des übernommenen Verzeichnisses mit einer exakten Definition belegt ist. Fehlgeschlagene Wörter bleiben offen. Eine laufende Sammlung bedeutet noch keinen vollständig übernommenen Klein-Bestand.
-
-## Strong’s: vollständiger hebräischer und aramäischer Bestand
-
-Alle 8.674 Einträge (H1–H8674) aus `openscriptures/strongs`, Commit `0acd2f251c2d35ff8db2dece4e0593979d3ac223`, sind im eigenen Strong’s-Filter verfügbar. Suche nach hebräischen Stichwörtern, englischen Bedeutungen und Nummern wie `H430`, `H0430` oder `430`. Interne H-Querverweise öffnen den entsprechenden Wörterbucheintrag. Die Übernahme enthält die Bedeutungsgliederung, Umschrift, Aussprache, Grammatik, Ableitungen, historischen englischen Wiedergaben und Korrekturanmerkungen.
-
-Verwendet wird `hebrew/StrongHebrewG.xml`; dessen Werkmetadaten nennen Public Domain, James Strong und die XML-Herausgeber David Troidl / David Instone-Brewer. Quelle: [Open Scriptures on GitHub](https://github.com/openscriptures/strongs). Die gewünschte ergänzende Urheberangabe lautet [Based on the work of Larry Pierce at the Online Bible](http://www.blueletterbible.org/contact/contact_gen.cfm); sie erscheint auch bei den vorhandenen BDB-Augmented-Strong-Einträgen gemäß deren übernommener Herkunft. Die Original-XML-Datei wird bytegleich ausgeliefert und kann unter „Bestand & Sicherung → Herkunft & Nutzungsbedingungen“ heruntergeladen werden. Prüfsumme und Commit sind dort sichtbar. Die digitale JavaScript-Ausgabe des Fremdprojekts wird nicht verwendet.
-
-Die englischen Originale werden nicht als vollständige DE-/HE-Übersetzungen ausgegeben. Eigene Übersetzungen und Notizen können wie bei Jastrow und Klein ergänzt werden. Die Suche und Einträge benötigen zur Laufzeit keine Sefaria- oder Open-Scriptures-Verbindung; für Offline-Nutzung zuerst die Wörterbücher speichern.
+Jastrow: Marcus Jastrow (1903), Public Domain; Digitalisierung Sefaria, Datenstand über jastrow.us. Klein: Ernest Klein, Carta (1987), Sefaria CC-BY-NC. BDB: Brown, Driver & Briggs, Herkunft je Datensatz. Strong’s: Open Scriptures on GitHub; ergänzende Urheberangabe „Based on the work of Larry Pierce at the Online Bible“; James Strong und XML-Herausgeber David Troidl / David Instone-Brewer. Rechte und Fassungen der Online-Texte werden beim Lesen angezeigt.

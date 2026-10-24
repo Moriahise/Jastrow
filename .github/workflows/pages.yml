@@ -34,11 +34,11 @@ jobs:
         with:
           path: .build/data-upstream
           key: lexicons-${{ hashFiles('scripts/web/upstream-pins.json') }}
-      - name: Prepare original files and pinned dictionaries
+      - name: Prepare pinned public dictionaries
         run: python scripts/web/prepare_inputs.py
       - name: Build searchable independent collection
         run: python scripts/web/build_data.py
-      - name: Verify every original file and dictionary record
+      - name: Verify public content and excluded personal data
         run: python scripts/web/verify_data.py
       - name: Test search and backup validation
         run: node --test tests/search.test.mjs

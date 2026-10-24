@@ -1,25 +1,9 @@
 #!/usr/bin/env python3
-"""Reconstruct the uploaded snapshot byte-for-byte and fetch pinned public data."""
-import json,pathlib,subprocess,hashlib,zipfile,urllib.request,concurrent.futures,time,shutil,base64,zlib
+"""Fetch and verify pinned public dictionaries and the source catalogue."""
+import json,pathlib,hashlib,urllib.request,concurrent.futures,time
 ROOT=pathlib.Path(__file__).resolve().parents[2];BUILD=ROOT/'.build';BUILD.mkdir(exist_ok=True)
-SNAP=ROOT/'snapshots/upload-2026-10-23';manifest=json.loads((SNAP/'manifest.json').read_text());recipes=json.loads(zlib.decompress(base64.b64decode((SNAP/'recipe.json.zlib.b64').read_text())))
-def digest(b):return hashlib.sha256(b).hexdigest()
-def restore(r,base):
- if 'ref' in r:
-  for k in r['ref']:base=base[k]
-  return base
- if 'value' in r:return r['value']
- if 'object' in r:return {k:restore(v,base) for k,v in r['object']}
- return [restore(v,base) for v in r['array']]
-with zipfile.ZipFile(BUILD/'uploaded-original.zip','w',zipfile.ZIP_DEFLATED) as z:
- for f in manifest['files']:
-  data=subprocess.check_output(['git','show',manifest['base_commit']+':'+f['path']],cwd=ROOT)
-  assert digest(data)==f['base_sha256'],f['path']+': base differs'
-  if f.get('recipe'):data=json.dumps(restore(recipes[f['path']],json.loads(data)),ensure_ascii=False,indent=2).replace('\n','\r\n').encode()
-  assert digest(data)==f['sha256'] and len(data)==f['bytes'],f['path']+': snapshot differs'
-  z.writestr(f['path'],data)
-print('Verified uploaded snapshot:',len(manifest['files']),'byte-identical files',flush=True)
 UP=BUILD/'data-upstream';UP.mkdir(exist_ok=True);pins=json.loads((ROOT/'scripts/web/upstream-pins.json').read_text())
+def digest(b):return hashlib.sha256(b).hexdigest()
 def fetch(item):
  rel,meta=item;dest=UP/rel;dest.parent.mkdir(parents=True,exist_ok=True)
  if dest.exists() and digest(dest.read_bytes())==meta['sha256']:return

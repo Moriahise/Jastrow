@@ -4,3 +4,5 @@ web/data/
 web/archive/
 web/audio_cache/
 web/offline-files.json
+
+.openai/

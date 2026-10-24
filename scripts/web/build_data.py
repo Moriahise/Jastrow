@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Lossless archive + non-destructive search projection. Standard library only."""
-import pathlib,json,hashlib,gzip,re,html,collections,zipfile,sys
-ROOT=pathlib.Path(__file__).resolve().parents[2]; OUT=ROOT/'web'; ORIG=ROOT/'.build/uploaded-original.zip'; UP=ROOT/'.build/data-upstream'
+"""Build the four public lexicon families and source library. Standard library only."""
+import pathlib,json,hashlib,gzip,re,html,collections,shutil,sys
+ROOT=pathlib.Path(__file__).resolve().parents[2]; OUT=ROOT/'web'; UP=ROOT/'.build/data-upstream'
 def pack(path,data):
  p=OUT/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(gzip.compress(json.dumps(data,ensure_ascii=False,separators=(',',':')).encode(),mtime=0))
 def norm(s):return re.sub(r'[^\u05d0-\u05ea\w\s]','',re.sub(r'[\u0591-\u05c7]','',s)).strip().lower()
@@ -16,83 +16,35 @@ def add(raw,word,path,kind='lexicon'):
  if word and word not in e['aliases']:e['aliases'].append(word)
  aliases[norm(word)].add(key)
  return key
-manifest=[];sources=[];postings=collections.defaultdict(lambda:collections.defaultdict(list));local=collections.defaultdict(lambda:collections.defaultdict(list))
-with zipfile.ZipFile(ORIG) as z:
- files={p.filename:z.read(p) for p in z.infolist() if not p.is_dir()}
- def load(n):return json.loads(files[n].decode('utf-8-sig'))
- for i,(name,blob) in enumerate(files.items()):
-  dest=f'archive/{i:03d}.gz';p=OUT/dest;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(gzip.compress(blob,mtime=0));manifest.append({'path':name,'url':dest,'bytes':len(blob),'sha256':hashlib.sha256(blob).hexdigest()})
-  if name.startswith('audio_cache/'):
-   p=OUT/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(blob)
-  if name.startswith('sources/'):
-   text=blob.decode('utf-8-sig');lines=text.splitlines();sid=len(sources); ref=''
-   for ln,line in enumerate(lines):
-    if re.match(r'^Daf \d+[ab]',line):ref=line
-    for w in set(re.findall(r'[\u05d0-\u05ea][\u0591-\u05c7\u05d0-\u05ea]*',line)):
-     w=norm(w)
-     if w:postings[w][sid].append(ln)
-   sources.append({'id':sid,'path':name,'title':pathlib.Path(name).stem,'url':dest,'lines':len(lines),'bytes':len(blob)})
- for n in ['sefaria_cache/sefaria_lexicon_cache.json','sefaria_cache/_back_sefaria_lexicon_cache.json']:
-  for w,v in load(n).items():
-   for e in v.get('data',[]):add(e,w,n)
- for n in ['jastrow_words/jastrow_words_1.json','sefaria_cache/local_sefaria_entries.json']:
-  for w,v in load(n).items():
-   for e in (v.get('entries',[]) if isinstance(v,dict) else v):add(e,w,n)
- # Keep meanings isolated by tractate and RID: never overwrite a reused ID.
- for tract in ['Bava_Batra','Berakhot','Beitzah']:
-  meanings=load(f'dictionaries/merged_dict_{tract}.json')
-  def walk(x):
-   if isinstance(x,list):
-    for y in x:walk(y)
-   elif isinstance(x,dict):
-    for w,ids in x.items():
-     if norm(w):
-      for rid in ids if isinstance(ids,list) else [ids]:
-       if rid in meanings:
-        record={'tractate':tract,'rid':rid,'meanings':meanings[rid]}
-        h=hashlib.sha256(json.dumps(record,sort_keys=True).encode()).hexdigest()
-        local[norm(w)][h]=record
-  walk(load(f'dictionaries/{tract}.json'))
- for w,records in local.items():
-  add({'headword':w,'lexicon':'Lokale Wortbedeutungen','mappings':list(records.values())},w,'dictionaries/','local')
- for w,v in load('user_dictionary.json').items():add({'headword':w,'lexicon':'Eigene Einträge','items':v},w,'user_dictionary.json','user')
- for w,v in load('sefaria_translations.json').items():add({'headword':w,'lexicon':'Gespeicherte Übersetzungen','items':v},w,'sefaria_translations.json','translation')
- for i,(original,items) in enumerate(load('api_translations/translations_1.json').items()):
-  words=list(dict.fromkeys(v.get('word','') for v in items if v.get('word')))
-  add({'headword':' · '.join(words) or 'Übersetzung '+str(i+1),'lexicon':'Archivierte KI-Übersetzung','items':items,'source_text':original},words[0] if words else '', 'api_translations/translations_1.json','api')
- history=load('query_history.json');pack('data/history.json.gz',history)
- # Every archived translation remains searchable, including those only in history.
- for q in history.get('queries',[]):
-  if q.get('api_translations'):add({'headword':q['word'],'lexicon':'Übersetzung aus Suchverlauf','translations':q['api_translations']},q['word'],'query_history.json','history')
-# Include additional records from the pre-existing repository as a second provenance.
-for n in ['sefaria_cache/sefaria_lexicon_cache.json','sefaria_cache/_back_sefaria_lexicon_cache.json']:
- p=ROOT/n
- if p.exists():
-  for w,v in json.loads(p.read_text('utf-8-sig')).items():
-   for raw in v.get('data',[]):add(raw,w,'Repository: '+n)
-for n in ['jastrow_words/jastrow_words_1.json','sefaria_cache/local_sefaria_entries.json']:
- p=ROOT/n
- if p.exists():
-  for w,v in json.loads(p.read_text('utf-8-sig')).items():
-   for raw in v.get('entries',[]) if isinstance(v,dict) else v:add(raw,w,'Repository: '+n)
-for n,kind,lex in [('sefaria_translations.json','translation','Gespeicherte Übersetzungen'),('user_dictionary.json','user','Eigene Einträge')]:
- p=ROOT/n
- if p.exists():
-  for w,v in json.loads(p.read_text('utf-8-sig')).items():add({'headword':w,'lexicon':lex,'items':v},w,'Repository: '+n,kind)
-p=ROOT/'api_translations/translations_1.json'
-if p.exists():
- for i,(original,items) in enumerate(json.loads(p.read_text('utf-8-sig')).items()):
-  words=list(dict.fromkeys(v.get('word','') for v in items if v.get('word')))
-  add({'headword':' · '.join(words) or 'Übersetzung '+str(i+1),'lexicon':'Archivierte KI-Übersetzung','items':items,'source_text':original},words[0] if words else '', 'Repository: api_translations/translations_1.json','api')
-p=ROOT/'query_history.json'
-if p.exists():
- history_repo=json.loads(p.read_text('utf-8-sig'));seen={json.dumps(v,sort_keys=True,ensure_ascii=False) for v in history.get('queries',[])}
- for q in history_repo.get('queries',[]):
-  h=json.dumps(q,sort_keys=True,ensure_ascii=False)
-  if h not in seen:history['queries'].append(q);seen.add(h)
-  if q.get('api_translations'):add({'headword':q['word'],'lexicon':'Übersetzung aus Suchverlauf','translations':q['api_translations']},q['word'],'Repository: query_history.json','history')
- history['repository_original_stats']=history_repo.get('stats');pack('data/history.json.gz',history)
-
+# A clean output directory prevents old personal data surviving a rebuild.
+for stale in ['data','archive','audio_cache']:
+ shutil.rmtree(OUT/stale,ignore_errors=True)
+(OUT/'data').mkdir(exist_ok=True)
+ALLOWED={'Jastrow Dictionary','Klein Dictionary','BDB Dictionary','BDB Aramaic Dictionary','BDB Augmented Strong',"Strong's Hebrew & Aramaic"}
+supplement=[r for p in sorted((ROOT/'snapshots/public-lexicons').glob('*.json.gz')) for r in json.loads(gzip.decompress(p.read_bytes()))]
+for raw in supplement:
+ assert raw.get('parent_lexicon',raw.get('lexicon')) in ALLOWED
+ add(raw,raw.get('headword',''),'Dictionary supplement')
+sources=[];postings=collections.defaultdict(lambda:collections.defaultdict(list))
+hebrew_titles={'Berakhot':'ברכות','Shabbat':'שבת','Eruvin':'עירובין','Pesachim':'פסחים','Yoma':'יומא','Sukkah':'סוכה','Beitzah':'ביצה','Rosh Hashanah':'ראש השנה','Taanit':'תענית','Megillah':'מגילה','Moed Katan':'מועד קטן','Chagigah':'חגיגה','Yevamot':'יבמות','Ketubot':'כתובות','Nedarim':'נדרים','Nazir':'נזיר','Sotah':'סוטה','Gittin':'גיטין','Kiddushin':'קידושין','Bava Kamma':'בבא קמא','Bava Metzia':'בבא מציעא','Bava Batra':'בבא בתרא','Sanhedrin':'סנהדרין','Makkot':'מכות','Shevuot':'שבועות','Avodah Zarah':'עבודה זרה','Horayot':'הוריות','Zevachim':'זבחים','Menachot':'מנחות','Chullin':'חולין','Bekhorot':'בכורות','Arakhin':'ערכין','Temurah':'תמורה','Keritot':'כריתות','Meilah':'מעילה','Tamid':'תמיד','Niddah':'נדה','Jerusalem Talmud Shekalim':'תלמוד ירושלמי שקלים'}
+for src in sorted((ROOT/'sources/Talmud').rglob('*.txt')):
+ blob=src.read_bytes();text=blob.decode('utf-8-sig');lines=text.splitlines();sid=len(sources)
+ digest=hashlib.sha256(blob).hexdigest();url='data/texts/'+digest[:20]+'.txt.gz';dest=OUT/url;dest.parent.mkdir(exist_ok=True);dest.write_bytes(gzip.compress(blob,mtime=0))
+ title=re.sub(r'^\d+-','',src.stem);work=title.split('HebrewWilliam')[0].split('EnglishWilliam')[0]
+ language='en' if 'EnglishWilliam' in title else 'he'
+ edition=title.split('Edition - ',1)[-1] if 'Edition - ' in title else ''
+ toc=[]
+ for ln,line in enumerate(lines):
+  if re.match(r'^Daf \d+[ab]',line):toc.append({'label':line.strip(),'line':ln})
+  for w in set(re.findall(r'[\u05d0-\u05ea][\u0591-\u05c7\u05d0-\u05ea]*',plain(line))):
+   w=norm(w)
+   if w:postings[w][sid].append(ln)
+ toc=[x for i,x in enumerate(toc) if any(l.strip() for l in lines[x['line']+1:toc[i+1]['line'] if i+1<len(toc) else len(lines)])]
+ base=work.replace('Steinsaltz on ','');he_title=hebrew_titles.get(base,base)
+ if work.startswith('Steinsaltz on '):he_title='ביאור שטיינזלץ על '+he_title
+ sources.append({'id':sid,'path':str(src.relative_to(ROOT)),'title':work,'he_title':he_title,'work':base,'category':'Talmud','edition':edition,'language':language,'url':url,'lines':len(lines),'bytes':len(blob),'sha256':digest,'toc':toc})
+# The public catalogue is pinned to the same published library as Shiurim.
+catalog=json.loads((UP/'source-library/catalog.json').read_text());pack('data/library.json.gz',catalog)
 # Optional complete upstream snapshots imported without modifying local originals.
 for p in sorted(UP.glob('*.json')):
  data=json.loads(p.read_text());rows=data.get('entries',[]) if isinstance(data,dict) else data
@@ -135,16 +87,16 @@ def alltext(x):
  if isinstance(x,dict):return ' '.join(alltext(v) for k,v in x.items() if k not in ['parent_lexicon_details','origins','upstream_original','source_entry_xml'])
  return ''
 for key,e in entries.items():
- r=e['raw'];hw=r.get('headword','');lex=r.get('parent_lexicon',r.get('lexicon','Weitere'));e['lexicon']=lex;e['headword']=hw;counts[lex]+=int(e['kind']!='catalog')
+ r=e['raw'];hw=r.get('headword','');lex=r.get('parent_lexicon',r.get('lexicon','Weitere'));assert lex in ALLOWED,lex;e['lexicon']=lex;e['headword']=hw;counts[lex]+=int(e['kind']!='catalog')
  text=alltext(r);a=list(dict.fromkeys([norm(hw)]+[norm(x) for x in e['aliases'] if norm(x)])); preview=plain((r.get('content',{}).get('senses') or [{}])[0].get('definition','')) if isinstance(r.get('content'),dict) else ''; preview=preview or plain(' · '.join(x.get('de') or x.get('en') or '' for m in r.get('mappings',[]) for x in m.get('meanings',[])))[:180] or plain(' · '.join(x.get('de') or x.get('translation') or x.get('en') or x.get('text','') for x in r.get('items',[])))[:180]
  index.append({'id':key,'hw':hw,'lex':lex,'kind':e['kind'],'aliases':a,'text':' '.join(dict.fromkeys(norm(text).split())),'preview':preview[:180],'pending':e['kind']=='catalog',**({'strongId':'H'+str(int(r['strong_number']))} if str(r.get('strong_number','')).isdigit() else {})});buckets[key[:1]][key]=e
 for bucket,rows in buckets.items():pack(f'data/entries/{bucket}.json.gz',rows)
-pack('data/index.json.gz',index);pack('data/sources.json.gz',sources);pack('data/archive.json.gz',manifest)
+pack('data/index.json.gz',index);pack('data/sources.json.gz',sources);pack('data/source-manifest.json.gz',[{'path':v['path'],'url':v['url'],'bytes':v['bytes'],'sha256':v['sha256']} for v in sources])
 # Inverted full-corpus index: all token occurrences, no arbitrary truncation.
 byletter=collections.defaultdict(dict)
 for w,byfile in postings.items():byletter[str(ord(w[0]))][w]=[[sid,lns] for sid,lns in byfile.items()]
 for letter,words in byletter.items():pack(f'data/corpus/{letter}.json.gz',words)
-meta={'schema':1,'version':'2026-10-23.1','entries':len(entries),'lexicons':dict(counts),'source_files':len(sources),'source_words':len(postings),'original_files':len(manifest),'original_bytes':sum(v['bytes'] for v in manifest),'history':len(history.get('queries',[])),'strongs':{'entries':8674,'source_commit':STRONGS_COMMIT,'source_sha256':hashlib.sha256(strongs_blob).hexdigest(),'source_url':'https://github.com/openscriptures/strongs','download':'data/strongs-source.xml.gz'},'klein_catalog':len(klein_catalog),'klein_collection':{k:v for k,v in klein_collection.items() if k not in ['entries','completed','failures']},'klein_pending':sum(e['kind']=='catalog' for e in entries.values()),'archive_sha256':'7b2f6c2abcd9ea16917de5b62c27dddaf90898d17ce95eea352a8c3d51414f86','complete_lexicons':["Strong's Hebrew & Aramaic (8,674 records)"]+(['Jastrow mirror snapshot (32,512 records)'] if (UP/'jastrow-manifest.txt').exists() and not json.loads((UP/'jastrow-manifest.txt').read_text()).get('missing_rids') else [])}
+meta={'schema':1,'version':'2026-10-24-public.1','entries':len(entries),'lexicons':dict(counts),'source_files':len(sources),'source_words':len(postings),'source_bytes':sum(v['bytes'] for v in sources),'library_works':len(catalog['works']),'strongs':{'entries':8674,'source_commit':STRONGS_COMMIT,'source_sha256':hashlib.sha256(strongs_blob).hexdigest(),'source_url':'https://github.com/openscriptures/strongs','download':'data/strongs-source.xml.gz'},'klein_catalog':len(klein_catalog),'klein_collection':{k:v for k,v in klein_collection.items() if k not in ['entries','completed','failures']},'klein_pending':sum(e['kind']=='catalog' for e in entries.values()),'complete_lexicons':["Strong's Hebrew & Aramaic (8,674 records)"]+(['Jastrow mirror snapshot (32,512 records)'] if (UP/'jastrow-manifest.txt').exists() and not json.loads((UP/'jastrow-manifest.txt').read_text()).get('missing_rids') else [])}
 (OUT/'data/meta.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2))
 # File listing for optional offline installation and integrity checks.
 assets=[str(p.relative_to(OUT)) for p in OUT.rglob('*') if p.is_file() and p.name!='offline-files.json']

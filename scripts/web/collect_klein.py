@@ -21,13 +21,6 @@ for rel,pin in PINS.items():
  cached=ROOT/'.build/data-upstream'/rel;b=cached.read_bytes() if cached.exists() else request(pin['url']);assert hashlib.sha256(b).hexdigest()==pin['sha256'],rel+': catalog changed'
  heads.update(h for _,h in json.loads(b))
 completed=set(state['completed']);entries={hashlib.sha256(json.dumps(r,ensure_ascii=False,sort_keys=True).encode()).hexdigest():r for r in state['entries']}
-# The original uploaded/repository entries remain separate and are also useful checkpoints.
-for name in ['sefaria_cache/sefaria_lexicon_cache.json','sefaria_cache/_back_sefaria_lexicon_cache.json']:
- for v in json.loads((ROOT/name).read_text('utf-8-sig')).values():
-  for r in v.get('data',[]):
-   if r.get('parent_lexicon')=='Klein Dictionary':
-    entries.setdefault(hashlib.sha256(json.dumps(r,ensure_ascii=False,sort_keys=True).encode()).hexdigest(),r)
-    if r.get('headword') in heads:completed.add(r['headword'])
 state['catalog_count']=len(heads);start=time.monotonic();deadline=start+4.6*3600
 
 def fetch(word):
